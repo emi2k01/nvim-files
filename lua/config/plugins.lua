@@ -45,4 +45,39 @@ return require("packer").startup(function(use)
             require("nvim-tree").setup()
         end
     }
+    use "hrsh7th/nvim-cmp"
+    use "hrsh7th/cmp-nvim-lsp"
+    use "L3MON4D3/LuaSnip"
+    use "saadparwaiz1/cmp_luasnip"
+    use "rafamadriz/friendly-snippets"
+
+    use {
+        "glepnir/lspsaga.nvim",
+        branch = "main",
+        config = function()
+            require("lspsaga").init_lsp_saga({})
+        end
+    }
+
+    use {
+        "TimUntersberger/neogit",
+        config = function()
+            require("neogit").setup({})
+        end
+    }
+    use {
+        "lewis6991/gitsigns.nvim",
+        config = function()
+            require('gitsigns').setup()
+        end
+    }
+
+    use "tpope/vim-surround"
+
+    use {
+        "windwp/nvim-ts-autotag",
+        config = function()
+            require("nvim-ts-autotag").setup()
+        end
+    }
 end)
