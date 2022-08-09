@@ -47,6 +47,7 @@ return require("packer").startup(function(use)
     }
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-nvim-lsp"
+    use "onsails/lspkind.nvim"
     use "L3MON4D3/LuaSnip"
     use "saadparwaiz1/cmp_luasnip"
     use "rafamadriz/friendly-snippets"
@@ -72,7 +73,83 @@ return require("packer").startup(function(use)
         end
     }
 
-    use "tpope/vim-surround"
+    use {
+        "kylechui/nvim-surround",
+        config = function()
+            local config = require("nvim-surround.config")
+            require("nvim-surround").setup({
+                surrounds = {
+                    ["t"] = {
+                        add = function()
+                            local input = config.get_input("Enter the HTML tag: ")
+                            if input then
+                                local element = input:match("^<?([^%s]*)")
+                                local attributes = input:match("^<?[^%s]*%s+(.-)>?$")
+
+                                local open = attributes and element .. " " .. attributes or element
+                                local close = element
+
+                                return { { "<" .. open .. ">" }, { "</" .. close .. ">" } }
+                            end
+                        end,
+                        find = function()
+                            return config.get_selection({ textobject = "t" })
+                        end,
+                        delete = "^(%b<>)().-(%b<>)()$",
+                        change = {
+                            target = "^<([^%s>]*)().-([^/]*)()>$",
+                            replacement = function()
+                                local input = config.get_input("Enter the HTML tag: ")
+                                if input then
+                                    local element = input:match("^<?([^%s]*)")
+                                    local attributes = input:match("^<?[^%s]*%s+(.-)>?$")
+
+                                    local open = attributes and element .. " " .. attributes or element
+                                    local close = element
+
+                                    return { { open }, { close } }
+                                end
+                            end,
+                        },
+                    },
+                    ["T"] = {
+                        add = function()
+                            local input = config.get_input("Enter the HTML tag: ")
+                            if input then
+                                local element = input:match("^<?([^%s]*)")
+                                local attributes = input:match("^<?[^%s]*%s+(.-)>?$")
+
+                                local open = attributes and element .. " " .. attributes or element
+                                local close = element
+
+                                return { { "<" .. open .. ">" }, { "</" .. close .. ">" } }
+                            end
+                        end,
+                        find = function()
+                            return config.get_selection({ textobject = "t" })
+                        end,
+                        delete = "^(%b<>)().-(%b<>)()$",
+                        change = {
+                            target = "^<([^>]*)().-([^/]*)()>$",
+                            replacement = function()
+                                local input = config.get_input("Enter the HTML tag: ")
+                                if input then
+                                    local element = input:match("^<?([^%s]*)")
+                                    local attributes = input:match("^<?[^%s]*%s+(.-)>?$")
+
+                                    local open = attributes and element .. " " .. attributes or element
+                                    local close = element
+
+                                    return { { open }, { close } }
+                                end
+                            end,
+                        },
+                    },
+                },
+
+            })
+        end
+    }
 
     use {
         "windwp/nvim-ts-autotag",
@@ -80,4 +157,6 @@ return require("packer").startup(function(use)
             require("nvim-ts-autotag").setup()
         end
     }
+
+    use "NMAC427/guess-indent.nvim"
 end)

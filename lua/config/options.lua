@@ -44,6 +44,7 @@ vim.g.startify_session_persistence = 1
 
 vim.cmd("colorscheme nord")
 vim.cmd("hi Normal guibg=NONE")
+vim.cmd("hi SignColumn guibg=NONE guifg=NONE")
 vim.cmd("hi WindowSwitch guibg='#434343' guifg='#EEEEEE'")
 
 vim.cmd("filetype indent off")

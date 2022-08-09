@@ -1,6 +1,7 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 local util = require("util")
+local lspkind = require("lspkind")
 
 cmp.setup({
     snippet = {
@@ -9,9 +10,11 @@ cmp.setup({
         end
     },
     mapping = cmp.mapping.preset.insert({
-        ['<CR>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.confirm()
+        ['<Tab>'] = cmp.mapping(function(fallback)
+            if luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            elseif cmp.visible() then
+                cmp.confirm({ select = true })
             else
                 fallback()
             end
@@ -20,10 +23,15 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip" },
-    })
+    }),
+    formatting = {
+        format = lspkind.cmp_format({
+            mode = "symbol",
+            maxWidth = 50,
+        })
+    }
 })
 
-util.map("i", "<Tab>", "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'", { expr = true })
 util.map("s", "<S-Tab>", "<cmd>lua require('luasnip').jump(-1)")
 
 require("luasnip.loaders.from_vscode").lazy_load()
