@@ -5,6 +5,7 @@ return require("packer").startup(function(use)
         "nvim-telescope/telescope.nvim",
         requires = { { "nvim-lua/plenary.nvim" } }
     }
+    use "natecraddock/telescope-zf-native.nvim"
     use "williamboman/mason.nvim"
     use "williamboman/mason-lspconfig.nvim"
     use "neovim/nvim-lspconfig"
@@ -38,12 +39,17 @@ return require("packer").startup(function(use)
             }
         end
     }
+    --use {
+    --    "kyazdani42/nvim-tree.lua",
+    --    tag = "nightly",
+    --    config = function()
+    --        require("nvim-tree").setup()
+    --    end
+    --}
     use {
-        "kyazdani42/nvim-tree.lua",
-        tag = "nightly",
-        config = function()
-            require("nvim-tree").setup()
-        end
+        "ms-jpq/chadtree",
+        branch = "chad",
+        run = "python3 -m chadtree deps"
     }
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-nvim-lsp"
@@ -69,85 +75,19 @@ return require("packer").startup(function(use)
     use {
         "lewis6991/gitsigns.nvim",
         config = function()
-            require('gitsigns').setup()
+            require('gitsigns').setup({
+                current_line_blame = true,
+            })
         end
     }
 
     use {
         "kylechui/nvim-surround",
+        branch = "add-treesitter-support",
         config = function()
             local config = require("nvim-surround.config")
-            require("nvim-surround").setup({
-                surrounds = {
-                    ["t"] = {
-                        add = function()
-                            local input = config.get_input("Enter the HTML tag: ")
-                            if input then
-                                local element = input:match("^<?([^%s]*)")
-                                local attributes = input:match("^<?[^%s]*%s+(.-)>?$")
-
-                                local open = attributes and element .. " " .. attributes or element
-                                local close = element
-
-                                return { { "<" .. open .. ">" }, { "</" .. close .. ">" } }
-                            end
-                        end,
-                        find = function()
-                            return config.get_selection({ textobject = "t" })
-                        end,
-                        delete = "^(%b<>)().-(%b<>)()$",
-                        change = {
-                            target = "^<([^%s>]*)().-([^/]*)()>$",
-                            replacement = function()
-                                local input = config.get_input("Enter the HTML tag: ")
-                                if input then
-                                    local element = input:match("^<?([^%s]*)")
-                                    local attributes = input:match("^<?[^%s]*%s+(.-)>?$")
-
-                                    local open = attributes and element .. " " .. attributes or element
-                                    local close = element
-
-                                    return { { open }, { close } }
-                                end
-                            end,
-                        },
-                    },
-                    ["T"] = {
-                        add = function()
-                            local input = config.get_input("Enter the HTML tag: ")
-                            if input then
-                                local element = input:match("^<?([^%s]*)")
-                                local attributes = input:match("^<?[^%s]*%s+(.-)>?$")
-
-                                local open = attributes and element .. " " .. attributes or element
-                                local close = element
-
-                                return { { "<" .. open .. ">" }, { "</" .. close .. ">" } }
-                            end
-                        end,
-                        find = function()
-                            return config.get_selection({ textobject = "t" })
-                        end,
-                        delete = "^(%b<>)().-(%b<>)()$",
-                        change = {
-                            target = "^<([^>]*)().-([^/]*)()>$",
-                            replacement = function()
-                                local input = config.get_input("Enter the HTML tag: ")
-                                if input then
-                                    local element = input:match("^<?([^%s]*)")
-                                    local attributes = input:match("^<?[^%s]*%s+(.-)>?$")
-
-                                    local open = attributes and element .. " " .. attributes or element
-                                    local close = element
-
-                                    return { { open }, { close } }
-                                end
-                            end,
-                        },
-                    },
-                },
-
-            })
+            require("nvim-surround").setup()
+            require("nvim-surround.filetype").typescriptreact.setup()
         end
     }
 
@@ -158,5 +98,10 @@ return require("packer").startup(function(use)
         end
     }
 
-    use "NMAC427/guess-indent.nvim"
+    use {
+        "NMAC427/guess-indent.nvim",
+        config = function()
+            require("guess-indent").setup({})
+        end
+    }
 end)

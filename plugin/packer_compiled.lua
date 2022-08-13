@@ -80,6 +80,11 @@ _G.packer_plugins = {
     path = "/home/emi2k01/.local/share/nvim/site/pack/packer/start/aerial.nvim",
     url = "https://github.com/stevearc/aerial.nvim"
   },
+  chadtree = {
+    loaded = true,
+    path = "/home/emi2k01/.local/share/nvim/site/pack/packer/start/chadtree",
+    url = "https://github.com/ms-jpq/chadtree"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/emi2k01/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -96,12 +101,13 @@ _G.packer_plugins = {
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
   ["gitsigns.nvim"] = {
-    config = { "\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0" },
+    config = { "\27LJ\2\nQ\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\23current_line_blame\2\nsetup\rgitsigns\frequire\0" },
     loaded = true,
     path = "/home/emi2k01/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   ["guess-indent.nvim"] = {
+    config = { "\27LJ\2\n>\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\17guess-indent\frequire\0" },
     loaded = true,
     path = "/home/emi2k01/.local/share/nvim/site/pack/packer/start/guess-indent.nvim",
     url = "https://github.com/NMAC427/guess-indent.nvim"
@@ -160,16 +166,10 @@ _G.packer_plugins = {
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-surround"] = {
-    config = { "\27LJ\2\n˚\1\0\0\n\1\t\0)-\0\0\0009\0\0\0'\2\1\0B\0\2\2\15\0\0\0X\1\"Ä\18\3\0\0009\1\2\0'\4\3\0B\1\3\2\18\4\0\0009\2\2\0'\5\4\0B\2\3\2\15\0\2\0X\3\6Ä\18\3\1\0'\4\5\0\18\5\2\0&\3\5\3\14\0\3\0X\4\1Ä\18\3\1\0\18\4\1\0004\5\3\0004\6\3\0'\a\6\0\18\b\3\0'\t\a\0&\a\t\a>\a\1\6>\6\1\0054\6\3\0'\a\b\0\18\b\4\0'\t\a\0&\a\t\a>\a\1\6>\6\2\5L\5\2\0K\0\1\0\0¿\a</\6>\6<\6 \24^<?[^%s]*%s+(.-)>?$\16^<?([^%s]*)\nmatch\25Enter the HTML tag: \14get_input7\0\0\3\1\2\0\4-\0\0\0009\0\0\0005\2\1\0D\0\2\0\0¿\1\0\1\15textobject\6t\18get_selection‘\1\0\0\a\1\6\0!-\0\0\0009\0\0\0'\2\1\0B\0\2\2\15\0\0\0X\1\26Ä\18\3\0\0009\1\2\0'\4\3\0B\1\3\2\18\4\0\0009\2\2\0'\5\4\0B\2\3\2\15\0\2\0X\3\6Ä\18\3\1\0'\4\5\0\18\5\2\0&\3\5\3\14\0\3\0X\4\1Ä\18\3\1\0\18\4\1\0004\5\3\0004\6\3\0>\3\1\6>\6\1\0054\6\3\0>\4\1\6>\6\2\5L\5\2\0K\0\1\0\0¿\6 \24^<?[^%s]*%s+(.-)>?$\16^<?([^%s]*)\nmatch\25Enter the HTML tag: \14get_input˚\1\0\0\n\1\t\0)-\0\0\0009\0\0\0'\2\1\0B\0\2\2\15\0\0\0X\1\"Ä\18\3\0\0009\1\2\0'\4\3\0B\1\3\2\18\4\0\0009\2\2\0'\5\4\0B\2\3\2\15\0\2\0X\3\6Ä\18\3\1\0'\4\5\0\18\5\2\0&\3\5\3\14\0\3\0X\4\1Ä\18\3\1\0\18\4\1\0004\5\3\0004\6\3\0'\a\6\0\18\b\3\0'\t\a\0&\a\t\a>\a\1\6>\6\1\0054\6\3\0'\a\b\0\18\b\4\0'\t\a\0&\a\t\a>\a\1\6>\6\2\5L\5\2\0K\0\1\0\0¿\a</\6>\6<\6 \24^<?[^%s]*%s+(.-)>?$\16^<?([^%s]*)\nmatch\25Enter the HTML tag: \14get_input7\0\0\3\1\2\0\4-\0\0\0009\0\0\0005\2\1\0D\0\2\0\0¿\1\0\1\15textobject\6t\18get_selection‘\1\0\0\a\1\6\0!-\0\0\0009\0\0\0'\2\1\0B\0\2\2\15\0\0\0X\1\26Ä\18\3\0\0009\1\2\0'\4\3\0B\1\3\2\18\4\0\0009\2\2\0'\5\4\0B\2\3\2\15\0\2\0X\3\6Ä\18\3\1\0'\4\5\0\18\5\2\0&\3\5\3\14\0\3\0X\4\1Ä\18\3\1\0\18\4\1\0004\5\3\0004\6\3\0>\3\1\6>\6\1\0054\6\3\0>\4\1\6>\6\2\5L\5\2\0K\0\1\0\0¿\6 \24^<?[^%s]*%s+(.-)>?$\16^<?([^%s]*)\nmatch\25Enter the HTML tag: \14get_input¯\2\1\0\b\0\23\0!6\0\0\0'\2\1\0B\0\2\0026\1\0\0'\3\2\0B\1\2\0029\1\3\0015\3\21\0005\4\r\0005\5\5\0003\6\4\0=\6\6\0053\6\a\0=\6\b\0055\6\t\0003\a\n\0=\a\v\6=\6\f\5=\5\14\0045\5\16\0003\6\15\0=\6\6\0053\6\17\0=\6\b\0055\6\18\0003\a\19\0=\a\v\6=\6\f\5=\5\20\4=\4\22\3B\1\2\0012\0\0ÄK\0\1\0\14surrounds\1\0\0\6T\0\1\0\1\vtarget\29^<([^>]*)().-([^/]*)()>$\0\1\0\1\vdelete\25^(%b<>)().-(%b<>)()$\0\6t\1\0\0\vchange\16replacement\0\1\0\1\vtarget\31^<([^%s>]*)().-([^/]*)()>$\tfind\0\badd\1\0\1\vdelete\25^(%b<>)().-(%b<>)()$\0\nsetup\18nvim-surround\25nvim-surround.config\frequire\0" },
+    config = { "\27LJ\2\nõ\1\0\0\4\0\6\0\0156\0\0\0'\2\1\0B\0\2\0026\1\0\0'\3\2\0B\1\2\0029\1\3\1B\1\1\0016\1\0\0'\3\4\0B\1\2\0029\1\5\0019\1\3\1B\1\1\1K\0\1\0\20typescriptreact\27nvim-surround.filetype\nsetup\18nvim-surround\25nvim-surround.config\frequire\0" },
     loaded = true,
     path = "/home/emi2k01/.local/share/nvim/site/pack/packer/start/nvim-surround",
     url = "https://github.com/kylechui/nvim-surround"
-  },
-  ["nvim-tree.lua"] = {
-    config = { "\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14nvim-tree\frequire\0" },
-    loaded = true,
-    path = "/home/emi2k01/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
-    url = "https://github.com/kyazdani42/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -202,6 +202,11 @@ _G.packer_plugins = {
     path = "/home/emi2k01/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["telescope-zf-native.nvim"] = {
+    loaded = true,
+    path = "/home/emi2k01/.local/share/nvim/site/pack/packer/start/telescope-zf-native.nvim",
+    url = "https://github.com/natecraddock/telescope-zf-native.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/emi2k01/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -221,42 +226,42 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
-time([[Config for gitsigns.nvim]], false)
 -- Config for: todo-comments.nvim
 time([[Config for todo-comments.nvim]], true)
 try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18todo-comments\frequire\0", "config", "todo-comments.nvim")
 time([[Config for todo-comments.nvim]], false)
--- Config for: neogit
-time([[Config for neogit]], true)
-try_loadstring("\27LJ\2\n8\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\vneogit\frequire\0", "config", "neogit")
-time([[Config for neogit]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
-time([[Config for nvim-tree.lua]], false)
--- Config for: lspsaga.nvim
-time([[Config for lspsaga.nvim]], true)
-try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\18init_lsp_saga\flspsaga\frequire\0", "config", "lspsaga.nvim")
-time([[Config for lspsaga.nvim]], false)
--- Config for: nvim-surround
-time([[Config for nvim-surround]], true)
-try_loadstring("\27LJ\2\n˚\1\0\0\n\1\t\0)-\0\0\0009\0\0\0'\2\1\0B\0\2\2\15\0\0\0X\1\"Ä\18\3\0\0009\1\2\0'\4\3\0B\1\3\2\18\4\0\0009\2\2\0'\5\4\0B\2\3\2\15\0\2\0X\3\6Ä\18\3\1\0'\4\5\0\18\5\2\0&\3\5\3\14\0\3\0X\4\1Ä\18\3\1\0\18\4\1\0004\5\3\0004\6\3\0'\a\6\0\18\b\3\0'\t\a\0&\a\t\a>\a\1\6>\6\1\0054\6\3\0'\a\b\0\18\b\4\0'\t\a\0&\a\t\a>\a\1\6>\6\2\5L\5\2\0K\0\1\0\0¿\a</\6>\6<\6 \24^<?[^%s]*%s+(.-)>?$\16^<?([^%s]*)\nmatch\25Enter the HTML tag: \14get_input7\0\0\3\1\2\0\4-\0\0\0009\0\0\0005\2\1\0D\0\2\0\0¿\1\0\1\15textobject\6t\18get_selection‘\1\0\0\a\1\6\0!-\0\0\0009\0\0\0'\2\1\0B\0\2\2\15\0\0\0X\1\26Ä\18\3\0\0009\1\2\0'\4\3\0B\1\3\2\18\4\0\0009\2\2\0'\5\4\0B\2\3\2\15\0\2\0X\3\6Ä\18\3\1\0'\4\5\0\18\5\2\0&\3\5\3\14\0\3\0X\4\1Ä\18\3\1\0\18\4\1\0004\5\3\0004\6\3\0>\3\1\6>\6\1\0054\6\3\0>\4\1\6>\6\2\5L\5\2\0K\0\1\0\0¿\6 \24^<?[^%s]*%s+(.-)>?$\16^<?([^%s]*)\nmatch\25Enter the HTML tag: \14get_input˚\1\0\0\n\1\t\0)-\0\0\0009\0\0\0'\2\1\0B\0\2\2\15\0\0\0X\1\"Ä\18\3\0\0009\1\2\0'\4\3\0B\1\3\2\18\4\0\0009\2\2\0'\5\4\0B\2\3\2\15\0\2\0X\3\6Ä\18\3\1\0'\4\5\0\18\5\2\0&\3\5\3\14\0\3\0X\4\1Ä\18\3\1\0\18\4\1\0004\5\3\0004\6\3\0'\a\6\0\18\b\3\0'\t\a\0&\a\t\a>\a\1\6>\6\1\0054\6\3\0'\a\b\0\18\b\4\0'\t\a\0&\a\t\a>\a\1\6>\6\2\5L\5\2\0K\0\1\0\0¿\a</\6>\6<\6 \24^<?[^%s]*%s+(.-)>?$\16^<?([^%s]*)\nmatch\25Enter the HTML tag: \14get_input7\0\0\3\1\2\0\4-\0\0\0009\0\0\0005\2\1\0D\0\2\0\0¿\1\0\1\15textobject\6t\18get_selection‘\1\0\0\a\1\6\0!-\0\0\0009\0\0\0'\2\1\0B\0\2\2\15\0\0\0X\1\26Ä\18\3\0\0009\1\2\0'\4\3\0B\1\3\2\18\4\0\0009\2\2\0'\5\4\0B\2\3\2\15\0\2\0X\3\6Ä\18\3\1\0'\4\5\0\18\5\2\0&\3\5\3\14\0\3\0X\4\1Ä\18\3\1\0\18\4\1\0004\5\3\0004\6\3\0>\3\1\6>\6\1\0054\6\3\0>\4\1\6>\6\2\5L\5\2\0K\0\1\0\0¿\6 \24^<?[^%s]*%s+(.-)>?$\16^<?([^%s]*)\nmatch\25Enter the HTML tag: \14get_input¯\2\1\0\b\0\23\0!6\0\0\0'\2\1\0B\0\2\0026\1\0\0'\3\2\0B\1\2\0029\1\3\0015\3\21\0005\4\r\0005\5\5\0003\6\4\0=\6\6\0053\6\a\0=\6\b\0055\6\t\0003\a\n\0=\a\v\6=\6\f\5=\5\14\0045\5\16\0003\6\15\0=\6\6\0053\6\17\0=\6\b\0055\6\18\0003\a\19\0=\a\v\6=\6\f\5=\5\20\4=\4\22\3B\1\2\0012\0\0ÄK\0\1\0\14surrounds\1\0\0\6T\0\1\0\1\vtarget\29^<([^>]*)().-([^/]*)()>$\0\1\0\1\vdelete\25^(%b<>)().-(%b<>)()$\0\6t\1\0\0\vchange\16replacement\0\1\0\1\vtarget\31^<([^%s>]*)().-([^/]*)()>$\tfind\0\badd\1\0\1\vdelete\25^(%b<>)().-(%b<>)()$\0\nsetup\18nvim-surround\25nvim-surround.config\frequire\0", "config", "nvim-surround")
-time([[Config for nvim-surround]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\flualine\frequire\0", "config", "lualine.nvim")
-time([[Config for lualine.nvim]], false)
+-- Config for: guess-indent.nvim
+time([[Config for guess-indent.nvim]], true)
+try_loadstring("\27LJ\2\n>\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\17guess-indent\frequire\0", "config", "guess-indent.nvim")
+time([[Config for guess-indent.nvim]], false)
 -- Config for: aerial.nvim
 time([[Config for aerial.nvim]], true)
 try_loadstring("\27LJ\2\n»\1\0\0\4\0\t\0\0176\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\0016\0\0\0'\2\3\0B\0\2\0029\0\2\0005\2\5\0005\3\4\0=\3\6\0025\3\a\0=\3\b\2B\0\2\1K\0\1\0\14highlight\1\0\1\venable\2\21ensure_installed\1\0\0\1\6\0\0\blua\trust\15typescript\15javascript\btsx\28nvim-treesitter.configs\nsetup\vaerial\frequire\0", "config", "aerial.nvim")
 time([[Config for aerial.nvim]], false)
+-- Config for: neogit
+time([[Config for neogit]], true)
+try_loadstring("\27LJ\2\n8\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\vneogit\frequire\0", "config", "neogit")
+time([[Config for neogit]], false)
+-- Config for: lspsaga.nvim
+time([[Config for lspsaga.nvim]], true)
+try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\18init_lsp_saga\flspsaga\frequire\0", "config", "lspsaga.nvim")
+time([[Config for lspsaga.nvim]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+try_loadstring("\27LJ\2\nQ\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\23current_line_blame\2\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
+time([[Config for gitsigns.nvim]], false)
 -- Config for: nvim-ts-autotag
 time([[Config for nvim-ts-autotag]], true)
 try_loadstring("\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20nvim-ts-autotag\frequire\0", "config", "nvim-ts-autotag")
 time([[Config for nvim-ts-autotag]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\flualine\frequire\0", "config", "lualine.nvim")
+time([[Config for lualine.nvim]], false)
+-- Config for: nvim-surround
+time([[Config for nvim-surround]], true)
+try_loadstring("\27LJ\2\nõ\1\0\0\4\0\6\0\0156\0\0\0'\2\1\0B\0\2\0026\1\0\0'\3\2\0B\1\2\0029\1\3\1B\1\1\0016\1\0\0'\3\4\0B\1\2\0029\1\5\0019\1\3\1B\1\1\1K\0\1\0\20typescriptreact\27nvim-surround.filetype\nsetup\18nvim-surround\25nvim-surround.config\frequire\0", "config", "nvim-surround")
+time([[Config for nvim-surround]], false)
 if should_profile then save_profiles() end
 
 end)

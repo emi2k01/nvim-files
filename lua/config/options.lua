@@ -1,3 +1,14 @@
+local util = require("util")
+
+vim.cmd("let mapleader = ' '")
+
+util.map("n", "<leader>tn", "<cmd>tabnew<CR>")
+util.map("n", "<leader>l", "<cmd>tabnext<CR>")
+util.map("n", "<leader>h", "<cmd>tabprevious<CR>")
+util.map("n", "<leader><S-l>", "<cmd>tabmove +1<CR>")
+util.map("n", "<leader><S-h>", "<cmd>tabmove -1<CR>")
+util.map("n", "<leader><esc>", "<cmd>nohlsearch<CR>")
+
 vim.g.mapleader = " "
 
 vim.o.shortmess = vim.o.shortmess .. "c"
@@ -38,9 +49,6 @@ vim.wo.listchars = vim.o.listchars
 vim.wo.wrap = false
 vim.wo.relativenumber = true
 vim.wo.colorcolumn = "110"
-
-vim.g.NERDTreeUseTcd = 1
-vim.g.startify_session_persistence = 1
 
 vim.cmd("colorscheme nord")
 vim.cmd("hi Normal guibg=NONE")

@@ -1,2 +1,5 @@
 local util = require("util")
-util.map("n", ",wt", "<cmd>NvimTreeToggle<CR>")
+util.map("n", "<leader>wt", "<cmd>CHADopen<CR>")
+-- vim.keymap.set("n", "<leader>J", require("nvim-tree.api").marks.navigate.next)
+-- vim.keymap.set("n", "<leader>K", require("nvim-tree.api").marks.navigate.prev)
+-- vim.keymap.set("n", "<leader>ts", require("nvim-tree.api").marks.navigate.select)

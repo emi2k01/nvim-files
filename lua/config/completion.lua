@@ -10,11 +10,13 @@ cmp.setup({
         end
     },
     mapping = cmp.mapping.preset.insert({
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
         ['<Tab>'] = cmp.mapping(function(fallback)
-            if luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            elseif cmp.visible() then
+            if cmp.visible() then
                 cmp.confirm({ select = true })
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
             else
                 fallback()
             end
@@ -30,6 +32,10 @@ cmp.setup({
             maxWidth = 50,
         })
     }
+})
+
+luasnip.config.setup({
+    region_check_events = "CursorMoved",
 })
 
 util.map("s", "<S-Tab>", "<cmd>lua require('luasnip').jump(-1)")
