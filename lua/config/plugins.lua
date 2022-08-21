@@ -6,6 +6,7 @@ return require("packer").startup(function(use)
         requires = { { "nvim-lua/plenary.nvim" } }
     }
     use "natecraddock/telescope-zf-native.nvim"
+    use "nvim-telescope/telescope-live-grep-args.nvim"
     use "williamboman/mason.nvim"
     use "williamboman/mason-lspconfig.nvim"
     use "neovim/nvim-lspconfig"
@@ -22,9 +23,6 @@ return require("packer").startup(function(use)
     use {
         "nvim-lualine/lualine.nvim",
         requires = { "kyazdani42/nvim-web-devicons" },
-        config = function()
-            require("lualine").setup()
-        end
     }
     use {
         "stevearc/aerial.nvim",
@@ -32,24 +30,26 @@ return require("packer").startup(function(use)
         config = function()
             require("aerial").setup({})
             require("nvim-treesitter.configs").setup {
-                ensure_installed = { "lua", "rust", "typescript", "javascript", "tsx" },
+                ensure_installed = { "lua", "rust", "typescript", "javascript", "tsx", "html" },
                 highlight = {
                     enable = true
+                },
+                autotag = {
+                    enable = true,
+                    filetypes = { "html", "typescriptreact", "javascriptreact", "htmldjango" }
                 }
             }
         end
     }
-    --use {
-    --    "kyazdani42/nvim-tree.lua",
-    --    tag = "nightly",
-    --    config = function()
-    --        require("nvim-tree").setup()
-    --    end
-    --}
     use {
-        "ms-jpq/chadtree",
-        branch = "chad",
-        run = "python3 -m chadtree deps"
+        "kyazdani42/nvim-tree.lua",
+        tag = "nightly",
+        config = function()
+            require("nvim-tree").setup({
+                create_in_closed_folder = true,
+                sync_root_with_cwd = true,
+            })
+        end
     }
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-nvim-lsp"
@@ -60,9 +60,12 @@ return require("packer").startup(function(use)
 
     use {
         "glepnir/lspsaga.nvim",
-        branch = "main",
         config = function()
-            require("lspsaga").init_lsp_saga({})
+            require("lspsaga").init_lsp_saga({
+                code_action_lightbulb ={
+                    virtual_text = false,
+                }
+            })
         end
     }
 
@@ -83,11 +86,8 @@ return require("packer").startup(function(use)
 
     use {
         "kylechui/nvim-surround",
-        branch = "add-treesitter-support",
         config = function()
-            local config = require("nvim-surround.config")
             require("nvim-surround").setup()
-            require("nvim-surround.filetype").typescriptreact.setup()
         end
     }
 
@@ -103,5 +103,34 @@ return require("packer").startup(function(use)
         config = function()
             require("guess-indent").setup({})
         end
+    }
+
+    use "ziglang/zig.vim"
+
+    use {
+        "akinsho/bufferline.nvim",
+        tag = "v2.*",
+        requires = 'kyazdani42/nvim-web-devicons',
+        config = function()
+            require("bufferline").setup({
+                options = {
+                    mode = "tabs"
+                }
+            })
+        end
+    }
+    use "anuvyklack/hydra.nvim"
+    use "echasnovski/mini.nvim"
+    use "numToStr/Comment.nvim"
+    use "phaazon/hop.nvim"
+    use "savq/melange"
+    use "Mofiqul/vscode.nvim"
+    use "sindrets/diffview.nvim"
+    use "arkav/lualine-lsp-progress"
+    use "nvim-telescope/telescope-ui-select.nvim"
+    use "simrat39/rust-tools.nvim"
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup({}) end
     }
 end)

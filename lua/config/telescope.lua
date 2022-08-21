@@ -1,8 +1,11 @@
 local util = require("util")
 local telescope = require("telescope")
+telescope.setup()
 
-util.map("n", "<leader>ff", "<cmd>Telescope find_files<CR>")
-util.map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>")
+util.map("n", "<leader>ff", "<cmd>lua require'telescope.builtin'.find_files{ path_display = { smart = true, truncate = 50 } } <CR>")
+util.map("n", "<leader>fg", "<cmd>lua require'telescope.builtin'.live_grep{ path_display = { smart = true, truncate = 50 } } <CR>")
+util.map("n", "<leader>fG", "<cmd>lua require'telescope.builtin'.live_grep{ search_dirs={'%:p'}, path_display = 'hidden' } <CR>")
+util.map("n", "<leader>fa", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
 util.map("n", "<leader>fb", "<cmd>Telescope buffers<CR>")
 
 vim.keymap.set("n", "<leader>fF",
@@ -16,7 +19,6 @@ local find_tree_marks = function(opts)
     local finders = require("telescope.finders")
     local conf = require("telescope.config").values
     local make_entry = require("telescope.make_entry")
-    local previewers = require("telescope.previewers")
 
     opts = opts or {}
     opts.cwd = opts.cwd and vim.fn.expand(opts.cwd) or vim.loop.cwd()
@@ -42,3 +44,4 @@ end
 vim.keymap.set("n", "<leader>ft", find_tree_marks)
 
 telescope.load_extension("zf-native")
+telescope.load_extension("ui-select")

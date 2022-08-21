@@ -14,7 +14,7 @@ vim.g.mapleader = " "
 vim.o.shortmess = vim.o.shortmess .. "c"
 vim.o.termguicolors = true
 vim.o.hidden = true
-vim.o.updatetime = 600
+vim.o.updatetime = 16
 vim.o.inccommand = "split"
 vim.o.mouse = "a"
 vim.o.listchars = "tab:» ,extends:›,precedes:‹,nbsp:·,trail:·"
@@ -33,6 +33,7 @@ vim.o.expandtab = true
 vim.o.shiftwidth = 4
 vim.o.tabstop = 4
 vim.o.formatoptions = "croqnljb"
+vim.o.foldlevelstart=99
 
 vim.bo.undofile = vim.o.undofile
 vim.bo.expandtab = vim.o.expandtab
@@ -50,10 +51,20 @@ vim.wo.wrap = false
 vim.wo.relativenumber = true
 vim.wo.colorcolumn = "110"
 
-vim.cmd("colorscheme nord")
 vim.cmd("hi Normal guibg=NONE")
 vim.cmd("hi SignColumn guibg=NONE guifg=NONE")
+vim.cmd("hi LineNr guibg=NONE guifg=NONE")
 vim.cmd("hi WindowSwitch guibg='#434343' guifg='#EEEEEE'")
 
-vim.cmd("filetype indent off")
-vim.cmd("au FileType rust setlocal nosmartindent")
+vim.cmd("au FileType typescriptreact,javascriptreact,javascript,typescript setlocal shiftwidth=2")
+
+vim.diagnostic.config({
+    virtual_text = false,
+    virtual_lines = {
+        only_current_line = true,
+    }
+})
+
+vim.keymap.set("i", "<CR>", "<CR>x<BS>", { silent = true })
+vim.keymap.set("n", "o", "ox<BS>", { silent = true })
+vim.keymap.set("n", "O", "Ox<BS>", { silent = true })

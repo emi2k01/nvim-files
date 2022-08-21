@@ -15,8 +15,8 @@ cmp.setup({
         ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.confirm({ select = true })
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
+            elseif luasnip.expandable() then
+                luasnip.expand()
             else
                 fallback()
             end
@@ -35,10 +35,12 @@ cmp.setup({
 })
 
 luasnip.config.setup({
-    region_check_events = "CursorMoved",
+    region_check_events = "InsertLeave,CursorMoved",
+    delete_check_events = "TextChanged,InsertLeave"
 })
 
-util.map("s", "<S-Tab>", "<cmd>lua require('luasnip').jump(-1)")
+vim.keymap.set({ "s", "i" }, "<C-l>", "<cmd>lua require('luasnip').jump(1)<CR>", {})
+vim.keymap.set({ "s", "i" }, "<C-h>", "<cmd>lua require('luasnip').jump(-1)<CR>", {})
 
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_lua").load({ paths = "./lua/config/snippets" })
