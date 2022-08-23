@@ -16,7 +16,6 @@ vim.o.termguicolors = true
 vim.o.hidden = true
 vim.o.updatetime = 16
 vim.o.inccommand = "split"
-vim.o.mouse = "a"
 vim.o.listchars = "tab:» ,extends:›,precedes:‹,nbsp:·,trail:·"
 vim.o.completeopt = "menuone,noselect"
 vim.o.pumheight = 20

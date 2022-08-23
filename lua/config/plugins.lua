@@ -16,9 +16,6 @@ return require("packer").startup(function(use)
     use {
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
-        config = function()
-            require("todo-comments").setup({})
-        end
     }
     use {
         "nvim-lualine/lualine.nvim",
@@ -86,9 +83,6 @@ return require("packer").startup(function(use)
 
     use {
         "kylechui/nvim-surround",
-        config = function()
-            require("nvim-surround").setup()
-        end
     }
 
     use {
@@ -131,6 +125,5 @@ return require("packer").startup(function(use)
     use "simrat39/rust-tools.nvim"
     use {
         "windwp/nvim-autopairs",
-        config = function() require("nvim-autopairs").setup({}) end
     }
 end)
