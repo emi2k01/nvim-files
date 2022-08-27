@@ -1,4 +1,3 @@
-vim.keymap.set("i", "<CR>", "<CR>x<BS>", { silent = true })
 require("config.options")
 require("config.plugins")
 require("config.colorscheme");
@@ -20,3 +19,4 @@ require("config.session")
 require("config.treesitter")
 require("config.surround")
 require("config.autopairs")
+require("config.winshift")

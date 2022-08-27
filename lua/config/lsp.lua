@@ -33,7 +33,7 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", ",ca", vim.lsp.buf.code_action, bufopts)
 	vim.keymap.set("n", "gr", pickers.lsp_references, bufopts)
 	vim.keymap.set("n", ",f", function()
-		vim.lsp.buf.format({ async = true })
+		vim.lsp.buf.formatting()
 	end, bufopts)
 	vim.keymap.set("n", ",ha", require("rust-tools").hover_actions.hover_actions, bufopts)
 end
@@ -96,7 +96,7 @@ require("rust-tools").setup({
 lspconfig.tsserver.setup({
 	capabilities = capabilities,
 	on_attach = function(client, bufnr)
-		client.server_capabilities.document_formatting = false
+		client.resolved_capabilities.document_formatting = false
 		on_attach(client, bufnr)
 		aerial.on_attach(client, bufnr)
 	end,
@@ -120,6 +120,24 @@ lspconfig.eslint.setup({
 })
 
 lspconfig.zls.setup({
+	capabilities = capabilities,
+	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
+		aerial.on_attach(client, bufnr)
+	end,
+})
+
+lspconfig.svelte.setup({
+	capabilities = capabilities,
+	on_attach = function(client, bufnr)
+		client.server_capabilities.documentFormattingProvider = false
+		client.resolved_capabilities.document_formatting = false
+		on_attach(client, bufnr)
+		aerial.on_attach(client, bufnr)
+	end,
+})
+
+lspconfig.marksman.setup({
 	capabilities = capabilities,
 	on_attach = function(client, bufnr)
 		on_attach(client, bufnr)

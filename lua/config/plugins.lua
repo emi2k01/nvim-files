@@ -1,129 +1,159 @@
 return require("packer").startup(function(use)
-    use "wbthomason/packer.nvim"
-    use "mhinz/vim-startify"
-    use {
-        "nvim-telescope/telescope.nvim",
-        requires = { { "nvim-lua/plenary.nvim" } }
-    }
-    use "natecraddock/telescope-zf-native.nvim"
-    use "nvim-telescope/telescope-live-grep-args.nvim"
-    use "williamboman/mason.nvim"
-    use "williamboman/mason-lspconfig.nvim"
-    use "neovim/nvim-lspconfig"
-    use "shaunsingh/nord.nvim"
-    use "https://gitlab.com/yorickpeterse/nvim-window.git"
-    use "jose-elias-alvarez/null-ls.nvim"
-    use {
-        "folke/todo-comments.nvim",
-        requires = "nvim-lua/plenary.nvim",
-    }
-    use {
-        "nvim-lualine/lualine.nvim",
-        requires = { "kyazdani42/nvim-web-devicons" },
-    }
-    use {
-        "stevearc/aerial.nvim",
-        requires = { "nvim-treesitter/nvim-treesitter" },
-        config = function()
-            require("aerial").setup({})
-            require("nvim-treesitter.configs").setup {
-                ensure_installed = { "lua", "rust", "typescript", "javascript", "tsx", "html" },
-                highlight = {
-                    enable = true
-                },
-                autotag = {
-                    enable = true,
-                    filetypes = { "html", "typescriptreact", "javascriptreact", "htmldjango" }
-                }
-            }
-        end
-    }
-    use {
-        "kyazdani42/nvim-tree.lua",
-        tag = "nightly",
-        config = function()
-            require("nvim-tree").setup({
-                create_in_closed_folder = true,
-                sync_root_with_cwd = true,
-            })
-        end
-    }
-    use "hrsh7th/nvim-cmp"
-    use "hrsh7th/cmp-nvim-lsp"
-    use "onsails/lspkind.nvim"
-    use "L3MON4D3/LuaSnip"
-    use "saadparwaiz1/cmp_luasnip"
-    use "rafamadriz/friendly-snippets"
+	use("wbthomason/packer.nvim")
+	use("mhinz/vim-startify")
+	use({
+		"nvim-telescope/telescope.nvim",
+		requires = { { "nvim-lua/plenary.nvim" } },
+	})
+	use("natecraddock/telescope-zf-native.nvim")
+	use("nvim-telescope/telescope-live-grep-args.nvim")
+	use("williamboman/mason.nvim")
+	use("williamboman/mason-lspconfig.nvim")
+	use("neovim/nvim-lspconfig")
+	use("shaunsingh/nord.nvim")
+	use("https://gitlab.com/yorickpeterse/nvim-window.git")
+	use("jose-elias-alvarez/null-ls.nvim")
+	use({
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			require("todo-comments").setup({
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			})
+		end,
+	})
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons" },
+	})
+	use({
+		"stevearc/aerial.nvim",
+		requires = { "nvim-treesitter/nvim-treesitter" },
+		config = function()
+			require("aerial").setup({})
+			require("nvim-treesitter.configs").setup({
+				ensure_installed = { "lua", "rust", "typescript", "javascript", "tsx", "html" },
+				highlight = {
+					enable = true,
+				},
+				autotag = {
+					enable = true,
+					filetypes = { "html", "typescriptreact", "javascriptreact", "htmldjango" },
+				},
+			})
+		end,
+	})
+	use({
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v2.x",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+		},
+	})
+	use("hrsh7th/nvim-cmp")
+	use("hrsh7th/cmp-nvim-lsp")
+	use("onsails/lspkind.nvim")
+	use("L3MON4D3/LuaSnip")
+	use("saadparwaiz1/cmp_luasnip")
+	use("rafamadriz/friendly-snippets")
 
-    use {
-        "glepnir/lspsaga.nvim",
-        config = function()
-            require("lspsaga").init_lsp_saga({
-                code_action_lightbulb ={
-                    virtual_text = false,
-                }
-            })
-        end
-    }
+	use({
+		"glepnir/lspsaga.nvim",
+		config = function()
+			require("lspsaga").init_lsp_saga({
+				code_action_lightbulb = {
+					virtual_text = false,
+				},
+			})
+		end,
+	})
 
-    use {
-        "TimUntersberger/neogit",
-        config = function()
-            require("neogit").setup({})
-        end
-    }
-    use {
-        "lewis6991/gitsigns.nvim",
-        config = function()
-            require('gitsigns').setup({
-                current_line_blame = true,
-            })
-        end
-    }
+	use({
+		"TimUntersberger/neogit",
+		config = function()
+			require("neogit").setup({})
+		end,
+	})
+	use({
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup({
+				current_line_blame = true,
+			})
+		end,
+	})
 
-    use {
-        "kylechui/nvim-surround",
-    }
+	use("kylechui/nvim-surround")
 
-    use {
-        "windwp/nvim-ts-autotag",
-        config = function()
-            require("nvim-ts-autotag").setup()
-        end
-    }
+	use({
+		"windwp/nvim-ts-autotag",
+		config = function()
+			require("nvim-ts-autotag").setup()
+		end,
+	})
 
-    use {
-        "NMAC427/guess-indent.nvim",
-        config = function()
-            require("guess-indent").setup({})
-        end
-    }
+	use({
+		"NMAC427/guess-indent.nvim",
+		config = function()
+			require("guess-indent").setup({})
+		end,
+	})
 
-    use "ziglang/zig.vim"
+	use("ziglang/zig.vim")
 
-    use {
-        "akinsho/bufferline.nvim",
-        tag = "v2.*",
-        requires = 'kyazdani42/nvim-web-devicons',
-        config = function()
-            require("bufferline").setup({
-                options = {
-                    mode = "tabs"
-                }
-            })
-        end
-    }
-    use "anuvyklack/hydra.nvim"
-    use "echasnovski/mini.nvim"
-    use "numToStr/Comment.nvim"
-    use "phaazon/hop.nvim"
-    use "savq/melange"
-    use "Mofiqul/vscode.nvim"
-    use "sindrets/diffview.nvim"
-    use "arkav/lualine-lsp-progress"
-    use "nvim-telescope/telescope-ui-select.nvim"
-    use "simrat39/rust-tools.nvim"
-    use {
-        "windwp/nvim-autopairs",
-    }
+	use({
+		"akinsho/bufferline.nvim",
+		tag = "v2.*",
+		requires = "kyazdani42/nvim-web-devicons",
+		config = function()
+			require("bufferline").setup({
+				options = {
+					mode = "tabs",
+				},
+				highlights = {
+					background = {
+						fg = "#666666",
+					},
+					close_button = {
+						fg = "#666666",
+					},
+				},
+			})
+		end,
+	})
+	use("anuvyklack/hydra.nvim")
+	use("echasnovski/mini.nvim")
+	use("numToStr/Comment.nvim")
+	use("phaazon/hop.nvim")
+	use("savq/melange")
+	use("Mofiqul/vscode.nvim")
+	use("sindrets/diffview.nvim")
+	use("arkav/lualine-lsp-progress")
+	use("nvim-telescope/telescope-ui-select.nvim")
+	use("simrat39/rust-tools.nvim")
+	use("nvim-treesitter/nvim-treesitter-context")
+	use("windwp/nvim-autopairs")
+	use("sindrets/winshift.nvim")
+	use("peitalin/vim-jsx-typescript")
+	use({
+		"nvim-neorg/neorg",
+		config = function()
+			require("neorg").setup({
+				load = {
+					["core.defaults"] = {},
+				},
+			})
+		end,
+		requires = "nvim-lua/plenary.nvim",
+	})
+	use({
+		"folke/trouble.nvim",
+		config = function()
+			require("trouble").setup({})
+		end,
+	})
 end)

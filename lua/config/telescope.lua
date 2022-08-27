@@ -2,15 +2,16 @@ local util = require("util")
 local telescope = require("telescope")
 telescope.setup()
 
-util.map("n", "<leader>ff", "<cmd>lua require'telescope.builtin'.find_files{ path_display = { smart = true, truncate = 50 } } <CR>")
+util.map("n", "<leader>fF", "<cmd>lua require'telescope.builtin'.find_files{ path_display = { smart = true, truncate = 50 } } <CR>")
 util.map("n", "<leader>fg", "<cmd>lua require'telescope.builtin'.live_grep{ path_display = { smart = true, truncate = 50 } } <CR>")
 util.map("n", "<leader>fG", "<cmd>lua require'telescope.builtin'.live_grep{ search_dirs={'%:p'}, path_display = 'hidden' } <CR>")
 util.map("n", "<leader>fa", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
 util.map("n", "<leader>fb", "<cmd>Telescope buffers<CR>")
+util.map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>")
 
-vim.keymap.set("n", "<leader>fF",
-    function() require('telescope.builtin').find_files({ cwd = vim.fn.expand('%:p:h') }) end)
 vim.keymap.set("n", "<leader>FF",
+    function() require('telescope.builtin').find_files({ cwd = vim.fn.expand('%:p:h') }) end)
+vim.keymap.set("n", "<leader>ff",
     function() require('telescope.builtin').find_files({ cwd = vim.fn.expand('%:p:h:h') }) end)
 
 local find_tree_marks = function(opts)

@@ -2,9 +2,10 @@ local util = require("util")
 
 vim.cmd("let mapleader = ' '")
 
+vim.keymap.set("i", "<CR>", "<CR>x<BS>", { silent = true })
 util.map("n", "<leader>tn", "<cmd>tabnew<CR>")
-util.map("n", "<leader>l", "<cmd>tabnext<CR>")
-util.map("n", "<leader>h", "<cmd>tabprevious<CR>")
+util.map("n", "<leader>l", "<cmd>+tabnext<CR>")
+util.map("n", "<leader>h", "<cmd>-tabnext<CR>")
 util.map("n", "<leader><S-l>", "<cmd>tabmove +1<CR>")
 util.map("n", "<leader><S-h>", "<cmd>tabmove -1<CR>")
 util.map("n", "<leader><esc>", "<cmd>nohlsearch<CR>")
@@ -33,6 +34,7 @@ vim.o.shiftwidth = 4
 vim.o.tabstop = 4
 vim.o.formatoptions = "croqnljb"
 vim.o.foldlevelstart=99
+vim.o.mouse = ""
 
 vim.bo.undofile = vim.o.undofile
 vim.bo.expandtab = vim.o.expandtab
@@ -55,10 +57,12 @@ vim.cmd("hi SignColumn guibg=NONE guifg=NONE")
 vim.cmd("hi LineNr guibg=NONE guifg=NONE")
 vim.cmd("hi WindowSwitch guibg='#434343' guifg='#EEEEEE'")
 
-vim.cmd("au FileType typescriptreact,javascriptreact,javascript,typescript setlocal shiftwidth=2")
+vim.cmd("filetype indent off")
+vim.cmd("au FileType * setlocal nosmartindent")
+vim.cmd("au FileType typescriptreact,javascriptreact,javascript,typescript,svelte setlocal shiftwidth=2")
 
 vim.diagnostic.config({
-    virtual_text = false,
+    virtual_text = true,
     virtual_lines = {
         only_current_line = true,
     }
@@ -67,3 +71,9 @@ vim.diagnostic.config({
 vim.keymap.set("i", "<CR>", "<CR>x<BS>", { silent = true })
 vim.keymap.set("n", "o", "ox<BS>", { silent = true })
 vim.keymap.set("n", "O", "Ox<BS>", { silent = true })
+
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { silent = true })
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { silent = true })
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { silent = true })
+
