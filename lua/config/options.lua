@@ -4,14 +4,15 @@ vim.cmd("let mapleader = ' '")
 
 vim.keymap.set("i", "<CR>", "<CR>x<BS>", { silent = true })
 util.map("n", "<leader>tn", "<cmd>tabnew<CR>")
-util.map("n", "<leader>l", "<cmd>+tabnext<CR>")
-util.map("n", "<leader>h", "<cmd>-tabnext<CR>")
+util.map("n", "<leader>l", "<cmd>tabnext<CR>")
+util.map("n", "<leader>h", "<cmd>tabprev<CR>")
 util.map("n", "<leader><S-l>", "<cmd>tabmove +1<CR>")
 util.map("n", "<leader><S-h>", "<cmd>tabmove -1<CR>")
 util.map("n", "<leader><esc>", "<cmd>nohlsearch<CR>")
 
 vim.g.mapleader = " "
 
+vim.o.conceallevel = 2
 vim.o.shortmess = vim.o.shortmess .. "c"
 vim.o.termguicolors = true
 vim.o.hidden = true
@@ -76,4 +77,3 @@ vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { silent = true })
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { silent = true })
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { silent = true })
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { silent = true })
-

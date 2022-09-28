@@ -42,18 +42,13 @@ return require("packer").startup(function(use)
 					enable = true,
 					filetypes = { "html", "typescriptreact", "javascriptreact", "htmldjango" },
 				},
+				playground = {
+					enable = true,
+				},
 			})
 		end,
 	})
-	use({
-		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v2.x",
-		requires = {
-			"nvim-lua/plenary.nvim",
-			"kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
-			"MunifTanjim/nui.nvim",
-		},
-	})
+	use("nvim-telescope/telescope-file-browser.nvim")
 	use("hrsh7th/nvim-cmp")
 	use("hrsh7th/cmp-nvim-lsp")
 	use("onsails/lspkind.nvim")
@@ -105,26 +100,6 @@ return require("packer").startup(function(use)
 
 	use("ziglang/zig.vim")
 
-	use({
-		"akinsho/bufferline.nvim",
-		tag = "v2.*",
-		requires = "kyazdani42/nvim-web-devicons",
-		config = function()
-			require("bufferline").setup({
-				options = {
-					mode = "tabs",
-				},
-				highlights = {
-					background = {
-						fg = "#666666",
-					},
-					close_button = {
-						fg = "#666666",
-					},
-				},
-			})
-		end,
-	})
 	use("anuvyklack/hydra.nvim")
 	use("echasnovski/mini.nvim")
 	use("numToStr/Comment.nvim")
@@ -154,6 +129,19 @@ return require("packer").startup(function(use)
 		"folke/trouble.nvim",
 		config = function()
 			require("trouble").setup({})
+		end,
+	})
+	use("nvim-treesitter/playground")
+	use("emi2k01/material.nvim")
+	use("b0o/schemastore.nvim")
+	use({
+		"stevearc/dressing.nvim",
+		config = function()
+			require("dressing").setup({
+				input = {
+					insert_only = false,
+				},
+			})
 		end,
 	})
 end)

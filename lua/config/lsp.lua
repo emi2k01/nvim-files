@@ -38,16 +38,6 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", ",ha", require("rust-tools").hover_actions.hover_actions, bufopts)
 end
 
-local action = require("lspsaga.action")
--- scroll down hover doc or scroll in definition preview
-vim.keymap.set("n", "<C-f>", function()
-	action.smart_scroll_with_saga(1)
-end, { silent = true })
--- scroll up hover doc
-vim.keymap.set("n", "<C-b>", function()
-	action.smart_scroll_with_saga(-1)
-end, { silent = true })
-
 local capabilities = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 lspconfig.sumneko_lua.setup({
@@ -82,12 +72,12 @@ require("rust-tools").setup({
 				},
 				diagnostics = {
 					experimental = {
-						enable = true,
+						enable = false,
 					},
 				},
 				files = {
-					watcher = "server"
-				}
+					watcher = "server",
+				},
 			},
 		},
 	},
@@ -100,6 +90,15 @@ lspconfig.tsserver.setup({
 		on_attach(client, bufnr)
 		aerial.on_attach(client, bufnr)
 	end,
+	settings = {
+		typescript = {
+			tsserver = {
+				watchOptions = {
+					watchFile = "useFsEventsOnParentDirectory",
+				},
+			},
+		},
+	},
 })
 
 lspconfig.graphql.setup({
@@ -155,48 +154,8 @@ lspconfig.jsonls.setup({
 	settings = {
 		json = {
 			-- Schemas https://www.schemastore.org
-			schemas = {
-				{
-					fileMatch = { "package.json" },
-					url = "https://json.schemastore.org/package.json",
-				},
-				{
-					fileMatch = { "tsconfig*.json" },
-					url = "https://json.schemastore.org/tsconfig.json",
-				},
-				{
-					fileMatch = {
-						".prettierrc",
-						".prettierrc.json",
-						"prettier.config.json",
-					},
-					url = "https://json.schemastore.org/prettierrc.json",
-				},
-				{
-					fileMatch = { ".eslintrc", ".eslintrc.json" },
-					url = "https://json.schemastore.org/eslintrc.json",
-				},
-				{
-					fileMatch = { ".babelrc", ".babelrc.json", "babel.config.json" },
-					url = "https://json.schemastore.org/babelrc.json",
-				},
-				{
-					fileMatch = { "lerna.json" },
-					url = "https://json.schemastore.org/lerna.json",
-				},
-				{
-					fileMatch = { "now.json", "vercel.json" },
-					url = "https://json.schemastore.org/now.json",
-				},
-				{
-					fileMatch = {
-						".stylelintrc",
-						".stylelintrc.json",
-						"stylelint.config.json",
-					},
-					url = "http://json.schemastore.org/stylelintrc.json",
-				},
-			},
+			schemas = require("schemastore").json.schemas(),
+			validate = { enable = true },
 		},
 	},
 })

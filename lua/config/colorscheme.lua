@@ -1,4 +1,2 @@
-require("vscode").setup({
-    transparent = true,
-    disable_nvimtree_bg = true,
-})
+vim.g.material_style = "deep ocean"
+vim.cmd("colorscheme material")

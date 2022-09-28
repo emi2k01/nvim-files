@@ -15,7 +15,9 @@ require("null-ls").setup({
 				"typescriptreact",
 				"svelte",
 				"graphql",
-				"gql"
+				"gql",
+				"scss",
+				"sass"
 			},
 		}),
 		-- require("null-ls").builtins.diagnostics.eslint_d,
