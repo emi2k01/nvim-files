@@ -101,6 +101,15 @@ lspconfig.tsserver.setup({
 	},
 })
 
+-- lspconfig.denols.setup({
+-- 	capabilities = capabilities,
+-- 	on_attach = function(client, bufnr)
+-- 		client.resolved_capabilities.document_formatting = false
+-- 		on_attach(client, bufnr)
+-- 		aerial.on_attach(client, bufnr)
+-- 	end,
+-- })
+
 lspconfig.graphql.setup({
 	capabilities = capabilities,
 	on_attach = function(client, bufnr)
