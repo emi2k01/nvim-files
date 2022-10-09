@@ -116,12 +116,8 @@ return require("packer").startup(function(use)
 	use("peitalin/vim-jsx-typescript")
 	use({
 		"nvim-neorg/neorg",
-		config = function()
-			require("neorg").setup({
-				load = {
-					["core.defaults"] = {},
-				},
-			})
+		config = function ()
+			require("neorg").setup({})
 		end,
 		requires = "nvim-lua/plenary.nvim",
 	})
@@ -143,5 +139,8 @@ return require("packer").startup(function(use)
 				},
 			})
 		end,
+	})
+	use({
+		"nanozuki/tabby.nvim",
 	})
 end)
