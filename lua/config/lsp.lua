@@ -38,13 +38,12 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", ",ha", require("rust-tools").hover_actions.hover_actions, bufopts)
 end
 
-local capabilities = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = cmp_lsp.default_capabilities()
 
 lspconfig.sumneko_lua.setup({
 	capabilities = capabilities,
 	on_attach = function(client, bufnr)
 		on_attach(client, bufnr)
-		aerial.on_attach(client, bufnr)
 	end,
 	settings = {
 		Lua = {

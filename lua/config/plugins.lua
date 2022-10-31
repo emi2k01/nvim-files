@@ -10,7 +10,7 @@ return require("packer").startup(function(use)
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
 	use("neovim/nvim-lspconfig")
-	use("shaunsingh/nord.nvim")
+	use("emi2k01/nord.nvim")
 	use("https://gitlab.com/yorickpeterse/nvim-window.git")
 	use("jose-elias-alvarez/null-ls.nvim")
 	use({
@@ -116,7 +116,7 @@ return require("packer").startup(function(use)
 	use("peitalin/vim-jsx-typescript")
 	use({
 		"nvim-neorg/neorg",
-		config = function ()
+		config = function()
 			require("neorg").setup({})
 		end,
 		requires = "nvim-lua/plenary.nvim",
@@ -143,4 +143,5 @@ return require("packer").startup(function(use)
 	use({
 		"nanozuki/tabby.nvim",
 	})
+	use("sam4llis/nvim-tundra")
 end)

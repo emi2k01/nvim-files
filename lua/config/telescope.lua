@@ -20,7 +20,7 @@ telescope.setup({
 		file_browser = {
 			mappings = {
 				["i"] = {
-					["<c-t>"] = tcd_action,
+					["<C-t>"] = tcd_action,
 				},
 				["n"] = {
 					["t"] = tcd_action,
