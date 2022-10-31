@@ -59,7 +59,6 @@ require("rust-tools").setup({
 		capabilities = capabilities,
 		on_attach = function(client, bufnr)
 			on_attach(client, bufnr)
-			aerial.on_attach(client, bufnr)
 		end,
 		settings = {
 			["rust-analyzer"] = {
@@ -87,7 +86,6 @@ lspconfig.tsserver.setup({
 	on_attach = function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
 		on_attach(client, bufnr)
-		aerial.on_attach(client, bufnr)
 	end,
 	settings = {
 		typescript = {
@@ -105,7 +103,6 @@ lspconfig.tsserver.setup({
 -- 	on_attach = function(client, bufnr)
 -- 		client.resolved_capabilities.document_formatting = false
 -- 		on_attach(client, bufnr)
--- 		aerial.on_attach(client, bufnr)
 -- 	end,
 -- })
 
@@ -113,7 +110,6 @@ lspconfig.graphql.setup({
 	capabilities = capabilities,
 	on_attach = function(client, bufnr)
 		on_attach(client, bufnr)
-		aerial.on_attach(client, bufnr)
 	end,
 })
 
@@ -122,7 +118,6 @@ lspconfig.eslint.setup({
 	on_attach = function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
 		on_attach(client, bufnr)
-		aerial.on_attach(client, bufnr)
 	end,
 })
 
@@ -130,7 +125,6 @@ lspconfig.zls.setup({
 	capabilities = capabilities,
 	on_attach = function(client, bufnr)
 		on_attach(client, bufnr)
-		aerial.on_attach(client, bufnr)
 	end,
 })
 
@@ -139,7 +133,6 @@ lspconfig.svelte.setup({
 	on_attach = function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
 		on_attach(client, bufnr)
-		aerial.on_attach(client, bufnr)
 	end,
 })
 
@@ -147,7 +140,6 @@ lspconfig.marksman.setup({
 	capabilities = capabilities,
 	on_attach = function(client, bufnr)
 		on_attach(client, bufnr)
-		aerial.on_attach(client, bufnr)
 	end,
 })
 
@@ -155,7 +147,6 @@ lspconfig.jsonls.setup({
 	capabilities = capabilities,
 	on_attach = function(client, bufnr)
 		on_attach(client, bufnr)
-		aerial.on_attach(client, bufnr)
 	end,
 	filetypes = { "json", "jsonc" },
 	settings = {
