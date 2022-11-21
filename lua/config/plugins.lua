@@ -45,6 +45,10 @@ return require("packer").startup(function(use)
 				playground = {
 					enable = true,
 				},
+				context_commentstring = {
+					enable = true,
+					enable_autocmd = false,
+				},
 			})
 		end,
 	})
@@ -144,4 +148,7 @@ return require("packer").startup(function(use)
 		"nanozuki/tabby.nvim",
 	})
 	use("sam4llis/nvim-tundra")
+	use("mattn/emmet-vim")
+	use("JoosepAlviste/nvim-ts-context-commentstring")
+	use("hrsh7th/cmp-nvim-lsp-signature-help")
 end)

@@ -25,6 +25,7 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
+		{ name = "nvim_lsp_signature_help" },
 	},
 	formatting = {
 		format = lspkind.cmp_format({

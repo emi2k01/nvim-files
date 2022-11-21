@@ -34,13 +34,13 @@ vim.api.nvim_set_keymap("n", "<space>wt", "<cmd>Telescope file_browser<CR>", { n
 vim.api.nvim_set_keymap("n", "<space>wT", "<cmd>Telescope file_browser path=%:p:h<CR>", { noremap = true })
 util.map(
 	"n",
-	"<leader>fF",
+	"<leader>ff",
 	"<cmd>lua require'telescope.builtin'.find_files{ path_display = { smart = true, truncate = 50 } } <CR>"
 )
-vim.keymap.set("n", "<leader>ff", function()
+vim.keymap.set("n", "<leader>FF", function()
 	require("telescope.builtin").find_files({ cwd = vim.fn.expand("%:p:h") })
 end)
-vim.keymap.set("n", "<leader>FF", function()
+vim.keymap.set("n", "<leader>fF", function()
 	require("telescope.builtin").find_files({ cwd = vim.fn.expand("%:p:h:h") })
 end)
 vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { noremap = true })
