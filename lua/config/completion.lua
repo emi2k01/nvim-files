@@ -40,8 +40,8 @@ luasnip.config.setup({
 	delete_check_events = "TextChanged,InsertLeave",
 })
 
-vim.keymap.set({ "s", "i" }, "<C-l>", "<cmd>lua require('luasnip').jump(1)<CR>", {})
-vim.keymap.set({ "s", "i" }, "<C-h>", "<cmd>lua require('luasnip').jump(-1)<CR>", {})
+vim.keymap.set({ "s", "i" }, "<C-j>", "<cmd>lua require('luasnip').jump(1)<CR>", {})
+vim.keymap.set({ "s", "i" }, "<C-k>", "<cmd>lua require('luasnip').jump(-1)<CR>", {})
 
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_lua").load({ paths = "./lua/config/snippets" })

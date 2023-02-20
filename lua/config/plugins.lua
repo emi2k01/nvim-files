@@ -1,21 +1,21 @@
-return require("packer").startup(function(use)
-	use("wbthomason/packer.nvim")
-	use("mhinz/vim-startify")
-	use({
+return require("lazy").setup({
+	"wbthomason/packer.nvim",
+	"mhinz/vim-startify",
+	{
 		"nvim-telescope/telescope.nvim",
 		requires = { { "nvim-lua/plenary.nvim" } },
-	})
-	use("natecraddock/telescope-zf-native.nvim")
-	use("nvim-telescope/telescope-live-grep-args.nvim")
-	use("williamboman/mason.nvim")
-	use("williamboman/mason-lspconfig.nvim")
-	use("neovim/nvim-lspconfig")
-	use("emi2k01/nord.nvim")
-	use("https://gitlab.com/yorickpeterse/nvim-window.git")
-	use("jose-elias-alvarez/null-ls.nvim")
-	use({
+	},
+	"natecraddock/telescope-zf-native.nvim",
+	"nvim-telescope/telescope-live-grep-args.nvim",
+	"williamboman/mason.nvim",
+	"williamboman/mason-lspconfig.nvim",
+	"neovim/nvim-lspconfig",
+	"emi2k01/nord.nvim",
+	"https://gitlab.com/yorickpeterse/nvim-window.git",
+	"jose-elias-alvarez/null-ls.nvim",
+	{
 		"folke/todo-comments.nvim",
-		requires = "nvim-lua/plenary.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("todo-comments").setup({
 				-- your configuration comes here
@@ -23,12 +23,12 @@ return require("packer").startup(function(use)
 				-- refer to the configuration section below
 			})
 		end,
-	})
-	use({
+	},
+	{
 		"nvim-lualine/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
-	})
-	use({
+		dependencies = { "kyazdani42/nvim-web-devicons" },
+	},
+	{
 		"stevearc/aerial.nvim",
 		requires = { "nvim-treesitter/nvim-treesitter" },
 		config = function()
@@ -51,90 +51,98 @@ return require("packer").startup(function(use)
 				},
 			})
 		end,
-	})
-	use("nvim-telescope/telescope-file-browser.nvim")
-	use("hrsh7th/nvim-cmp")
-	use("hrsh7th/cmp-nvim-lsp")
-	use("onsails/lspkind.nvim")
-	use("L3MON4D3/LuaSnip")
-	use("saadparwaiz1/cmp_luasnip")
-	use("rafamadriz/friendly-snippets")
-
-	use({
+	},
+	"nvim-telescope/telescope-file-browser.nvim",
+	"yioneko/nvim-cmp",
+	"hrsh7th/cmp-nvim-lsp",
+	"onsails/lspkind.nvim",
+	"L3MON4D3/LuaSnip",
+	"saadparwaiz1/cmp_luasnip",
+	"rafamadriz/friendly-snippets",
+	{
 		"glepnir/lspsaga.nvim",
 		config = function()
-			require("lspsaga").init_lsp_saga({
-				code_action_lightbulb = {
-					virtual_text = false,
+			require("lspsaga").setup({
+				lightbulb = {
+					enable = false,
+				},
+				symbol_in_winbar = {
+					separator = "  ",
 				},
 			})
 		end,
-	})
+	},
 
-	use({
+	{
 		"TimUntersberger/neogit",
 		config = function()
 			require("neogit").setup({})
 		end,
-	})
-	use({
+	},
+	{
 		"lewis6991/gitsigns.nvim",
 		config = function()
 			require("gitsigns").setup({
 				current_line_blame = true,
 			})
 		end,
-	})
+	},
 
-	use("kylechui/nvim-surround")
+	"kylechui/nvim-surround",
 
-	use({
+	{
 		"windwp/nvim-ts-autotag",
 		config = function()
 			require("nvim-ts-autotag").setup()
 		end,
-	})
+	},
 
-	use({
+	{
 		"NMAC427/guess-indent.nvim",
 		config = function()
 			require("guess-indent").setup({})
 		end,
-	})
+	},
 
-	use("ziglang/zig.vim")
+	"ziglang/zig.vim",
 
-	use("anuvyklack/hydra.nvim")
-	use("echasnovski/mini.nvim")
-	use("numToStr/Comment.nvim")
-	use("phaazon/hop.nvim")
-	use("savq/melange")
-	use("Mofiqul/vscode.nvim")
-	use("sindrets/diffview.nvim")
-	use("arkav/lualine-lsp-progress")
-	use("nvim-telescope/telescope-ui-select.nvim")
-	use("simrat39/rust-tools.nvim")
-	use("nvim-treesitter/nvim-treesitter-context")
-	use("windwp/nvim-autopairs")
-	use("sindrets/winshift.nvim")
-	use("peitalin/vim-jsx-typescript")
-	use({
+	"anuvyklack/hydra.nvim",
+	"echasnovski/mini.nvim",
+	"numToStr/Comment.nvim",
+	{
+		"ggandor/leap.nvim",
+		config = function()
+			require("leap").add_default_mappings()
+		end,
+	},
+	"savq/melange",
+	"Mofiqul/vscode.nvim",
+	"sindrets/diffview.nvim",
+	"arkav/lualine-lsp-progress",
+	"nvim-telescope/telescope-ui-select.nvim",
+	"simrat39/rust-tools.nvim",
+	"nvim-treesitter/nvim-treesitter",
+	"nvim-treesitter/nvim-treesitter-context",
+	"windwp/nvim-autopairs",
+	"sindrets/winshift.nvim",
+	"peitalin/vim-jsx-typescript",
+	{
 		"nvim-neorg/neorg",
 		config = function()
 			require("neorg").setup({})
 		end,
-		requires = "nvim-lua/plenary.nvim",
-	})
-	use({
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
+	{
 		"folke/trouble.nvim",
 		config = function()
 			require("trouble").setup({})
 		end,
-	})
-	use("nvim-treesitter/playground")
-	use("emi2k01/material.nvim")
-	use("b0o/schemastore.nvim")
-	use({
+	},
+	"nvim-treesitter/playground",
+	"emi2k01/material.nvim",
+	"b0o/schemastore.nvim",
+	{
 		"stevearc/dressing.nvim",
 		config = function()
 			require("dressing").setup({
@@ -143,12 +151,37 @@ return require("packer").startup(function(use)
 				},
 			})
 		end,
-	})
-	use({
+	},
+	{
 		"nanozuki/tabby.nvim",
-	})
-	use("sam4llis/nvim-tundra")
-	use("mattn/emmet-vim")
-	use("JoosepAlviste/nvim-ts-context-commentstring")
-	use("hrsh7th/cmp-nvim-lsp-signature-help")
-end)
+	},
+	"sam4llis/nvim-tundra",
+	"mattn/emmet-vim",
+	"JoosepAlviste/nvim-ts-context-commentstring",
+	"hrsh7th/cmp-nvim-lsp-signature-help",
+	{
+		"folke/which-key.nvim",
+		config = function()
+			require("which-key").setup({})
+		end,
+	},
+	"tamago324/nlsp-settings.nvim",
+	"sigmaSd/deno-nvim",
+	{
+		"folke/tokyonight.nvim",
+		config = function()
+			require("tokyonight").setup({
+				style = "night",
+				transparent = true,
+				on_colors = function(colors)
+					colors.bg = "#08090d"
+					colors.bg_dark = "#06070a"
+					colors.bg_float = colors.bg_dark
+					colors.bg_popup = colors.bg_dark
+					colors.bg_sidebar = colors.bg_dark
+					colors.bg_highlight = "#0e1017"
+				end,
+			})
+		end,
+	},
+})

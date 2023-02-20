@@ -4,6 +4,7 @@ vim.cmd("let mapleader = ' '")
 
 vim.keymap.set("i", "<CR>", "<CR>x<BS>", { silent = true })
 util.map("n", "<leader>tn", "<cmd>tabnew<CR>")
+util.map("n", "<leader>tc", "<cmd>tabclose<CR>")
 util.map("n", "<leader>l", "<cmd>tabnext<CR>")
 util.map("n", "<leader>h", "<cmd>tabprev<CR>")
 util.map("n", "<leader><S-l>", "<cmd>tabmove +1<CR>")

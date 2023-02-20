@@ -1,6 +1,7 @@
 require("mason").setup()
 require("mason-lspconfig").setup()
-local aerial = require("aerial")
+local nlspsettings = require("nlspsettings")
+nlspsettings.setup({})
 local cmp_lsp = require("cmp_nvim_lsp")
 local pickers = require("telescope.builtin")
 
@@ -9,13 +10,13 @@ local M = {}
 local lspconfig = require("lspconfig")
 
 require("mason-lspconfig").setup({
-	ensure_installed = { "sumneko_lua", "rust_analyzer", "tsserver" },
+	ensure_installed = { "lua_ls", "rust_analyzer", "tsserver" },
 })
 
 local opts = { noremap = true, silent = true }
-vim.keymap.set("n", ",e", vim.diagnostic.open_float, opts)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+vim.keymap.set("n", ",e", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
+vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
+vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
 vim.keymap.set("n", ",q", vim.diagnostic.setloclist, opts)
 
 ---@diagnostic disable-next-line: unused-local
@@ -30,7 +31,7 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<C-k>", "<cmd>Lspsaga signature_help<CR>", bufopts)
 	vim.keymap.set("n", "<space>D", pickers.lsp_type_definitions, bufopts)
 	vim.keymap.set("n", ",rn", "<cmd>Lspsaga rename<CR>", bufopts)
-	vim.keymap.set("n", ",ca", vim.lsp.buf.code_action, bufopts)
+	vim.keymap.set("n", ",ca", "<cmd>Lspsaga code_action<CR>", bufopts)
 	vim.keymap.set("n", "gr", pickers.lsp_references, bufopts)
 	vim.keymap.set("n", ",f", function()
 		vim.lsp.buf.format({ async = true })
@@ -40,7 +41,7 @@ end
 
 local capabilities = cmp_lsp.default_capabilities()
 
-lspconfig.sumneko_lua.setup({
+lspconfig.lua_ls.setup({
 	capabilities = capabilities,
 	on_attach = function(client, bufnr)
 		on_attach(client, bufnr)
@@ -70,7 +71,7 @@ require("rust-tools").setup({
 				},
 				diagnostics = {
 					experimental = {
-						enable = false,
+						enable = true,
 					},
 				},
 				files = {
@@ -96,19 +97,24 @@ lspconfig.tsserver.setup({
 			},
 		},
 	},
+	root_dir = require("lspconfig.util").root_pattern("package.json"),
+	single_file_support = false,
 })
 
--- lspconfig.denols.setup({
--- 	capabilities = capabilities,
--- 	on_attach = function(client, bufnr)
--- 		client.resolved_capabilities.document_formatting = false
--- 		on_attach(client, bufnr)
--- 	end,
--- })
+require("deno-nvim").setup({
+	server = {
+		capabilities = capabilities,
+		on_attach = function(client, bufnr)
+			on_attach(client, bufnr)
+		end,
+		root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
+	},
+})
 
 lspconfig.graphql.setup({
 	capabilities = capabilities,
 	on_attach = function(client, bufnr)
+		client.server_capabilities.hoverProvider = false
 		on_attach(client, bufnr)
 	end,
 })
@@ -117,6 +123,7 @@ lspconfig.eslint.setup({
 	capabilities = capabilities,
 	on_attach = function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.hoverProvider = false
 		on_attach(client, bufnr)
 	end,
 })
@@ -141,6 +148,22 @@ lspconfig.marksman.setup({
 	on_attach = function(client, bufnr)
 		on_attach(client, bufnr)
 	end,
+})
+
+lspconfig.tailwindcss.setup({
+	capabilities = capabilities,
+	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
+	end,
+	settings = {
+		tailwindCSS = {
+			experimental = {
+				classRegex = {
+					{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+				},
+			},
+		},
+	},
 })
 
 lspconfig.jsonls.setup({
