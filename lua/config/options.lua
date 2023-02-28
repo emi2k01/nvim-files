@@ -34,7 +34,7 @@ vim.o.undofile = true
 vim.o.expandtab = true
 vim.o.shiftwidth = 4
 vim.o.tabstop = 4
-vim.o.formatoptions = "croqnljb"
+vim.o.formatoptions = "qnljb"
 vim.o.foldlevelstart=99
 vim.o.mouse = ""
 
@@ -61,7 +61,7 @@ vim.cmd("hi WindowSwitch guibg='#434343' guifg='#EEEEEE'")
 
 vim.cmd("filetype indent off")
 vim.cmd("au FileType * setlocal nosmartindent")
-vim.cmd("au FileType typescriptreact,javascriptreact,javascript,typescript,svelte setlocal shiftwidth=2")
+vim.cmd("au FileType typescriptreact,javascriptreact,javascript,typescript,svelte setlocal shiftwidth=2 | setlocal formatoptions-=cro")
 
 vim.diagnostic.config({
     virtual_text = true,

@@ -1,6 +1,6 @@
 require("config.options")
 require("config.plugins")
-require("config.colorscheme");
+require("config.colorscheme")
 require("config.lsp")
 require("config.telescope")
 require("config.nvim-window")
@@ -20,3 +20,7 @@ require("config.treesitter")
 require("config.surround")
 require("config.autopairs")
 require("config.winshift")
+
+vim.api.nvim_create_user_command("LoadSetup", function()
+    loadfile("./.local/emi2k01/nvim_setup.lua")()
+end, {})

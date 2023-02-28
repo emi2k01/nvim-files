@@ -1,6 +1,4 @@
-local neogit = require("neogit")
-
-vim.keymap.set("n", "<leader>gg", neogit.open)
-vim.keymap.set("n", "<leader>gc", function () neogit.open({ "commit" }) end)
-vim.keymap.set("n", "<leader>gP", function () neogit.open({ "push" }) end)
-vim.keymap.set("n", "<leader>gp", function () neogit.open({ "pull" }) end)
+vim.keymap.set("n", "<leader>gg", "<cmd>Git<CR>")
+vim.keymap.set("n", "<leader>gc", "<cmd>Git commit<CR>")
+vim.keymap.set("n", "<leader>gP", "<cmd>Git push<CR>")
+vim.keymap.set("n", "<leader>gp", "<cmd>Git pull --rebase<CR>")

@@ -19,6 +19,11 @@ vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
 vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
 vim.keymap.set("n", ",q", vim.diagnostic.setloclist, opts)
 
+vim.diagnostic.config({
+	virtual_text = false,
+	underline = false,
+})
+
 ---@diagnostic disable-next-line: unused-local
 local on_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -82,23 +87,26 @@ require("rust-tools").setup({
 	},
 })
 
-lspconfig.tsserver.setup({
-	capabilities = capabilities,
-	on_attach = function(client, bufnr)
-		client.server_capabilities.documentFormattingProvider = false
-		on_attach(client, bufnr)
-	end,
-	settings = {
-		typescript = {
-			tsserver = {
-				watchOptions = {
-					watchFile = "useFsEventsOnParentDirectory",
+require("typescript").setup({
+	server = {
+		root_dir = require("lspconfig.util").root_pattern(".git"),
+		capabilities = capabilities,
+		on_attach = function(client, bufnr)
+			client.server_capabilities.documentFormattingProvider = false
+			on_attach(client, bufnr)
+		end,
+		settings = {
+			typescript = {
+				tsserver = {
+					watchOptions = {
+						watchFile = "useFsEventsOnParentDirectory",
+					},
+					maxTsServerMemory = 16384,
 				},
 			},
 		},
+		single_file_support = false,
 	},
-	root_dir = require("lspconfig.util").root_pattern("package.json"),
-	single_file_support = false,
 })
 
 require("deno-nvim").setup({

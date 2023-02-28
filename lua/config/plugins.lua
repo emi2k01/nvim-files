@@ -72,13 +72,6 @@ return require("lazy").setup({
 			})
 		end,
 	},
-
-	{
-		"TimUntersberger/neogit",
-		config = function()
-			require("neogit").setup({})
-		end,
-	},
 	{
 		"lewis6991/gitsigns.nvim",
 		config = function()
@@ -184,4 +177,52 @@ return require("lazy").setup({
 			})
 		end,
 	},
+	{
+		"folke/neodev.nvim",
+		config = function()
+			require("neodev").setup({})
+		end,
+	},
+	{ "tpope/vim-fugitive" },
+	{
+		"jose-elias-alvarez/typescript.nvim",
+	},
+	"anuvyklack/middleclass",
+	"anuvyklack/animation.nvim",
+	{
+		"anuvyklack/windows.nvim",
+		config = function()
+			vim.o.equalalways = false
+			vim.keymap.set("n", "<C-w>z", "<cmd>WindowsMaximize<CR>")
+			vim.keymap.set("n", "<C-w>_", "<cmd>WindowsMaximizeVertically<CR>")
+			vim.keymap.set("n", "<C-w>|", "<cmd>WindowsMaximizeHorizontally<CR>")
+			vim.keymap.set("n", "<C-w>=", "<cmd>WindowsEqualize<CR>")
+			require("windows").setup({
+				autowidth = {
+					winwidth = 60,
+				},
+				animation = {
+					duration = 100,
+				},
+			})
+		end,
+	},
+	{
+		"zbirenbaum/copilot.lua",
+		config = function()
+			require("copilot").setup({
+				suggestion = { enabled = false, auto_trigger = true },
+				panel = { enabled = true },
+			})
+		end,
+	},
+	{
+		"zbirenbaum/copilot-cmp",
+		config = function()
+			require("copilot_cmp").setup()
+		end,
+	},
+	-- {
+	-- 	"github/copilot.vim"
+	-- }
 })

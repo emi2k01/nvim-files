@@ -6,6 +6,6 @@ require("lualine").setup({
 		},
 	},
 	tabline = {
-		lualine_a = { "tabs" },
+		lualine_a = { { "tabs", mode = 2 } },
 	},
 })

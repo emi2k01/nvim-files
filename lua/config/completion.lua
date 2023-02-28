@@ -8,12 +8,26 @@ cmp.setup({
 			luasnip.lsp_expand(args.body)
 		end,
 	},
+	completion = {
+		completeopt = "menuone,noinsert,noselect",
+		keyword_length = 1,
+		autocomplete = {
+			cmp.TriggerEvent.InsertEnter,
+			cmp.TriggerEvent.TextChanged,
+		},
+	},
+	window = {
+		completion = {
+			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+			scrollbar = "║",
+		},
+	},
 	mapping = cmp.mapping.preset.insert({
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.abort(),
 		["<C-CR>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
-				cmp.confirm({ select = true })
+				cmp.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })
 			elseif luasnip.expandable() then
 				luasnip.expand()
 			else
@@ -23,6 +37,7 @@ cmp.setup({
 	}),
 	experimental = { ghost_text = true },
 	sources = {
+		{ name = "copilot" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "nvim_lsp_signature_help" },
@@ -31,7 +46,18 @@ cmp.setup({
 		format = lspkind.cmp_format({
 			mode = "symbol",
 			maxWidth = 50,
+			symbol_map = { Copilot = "" },
 		}),
+	},
+	sorting = {
+		comparators = {
+			cmp.config.compare.recently_used,
+			cmp.config.compare.offset,
+			cmp.config.compare.score,
+			cmp.config.compare.sort_text,
+			cmp.config.compare.length,
+			cmp.config.compare.order,
+		},
 	},
 })
 

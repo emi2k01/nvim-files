@@ -57,6 +57,8 @@ util.map(
 util.map("n", "<leader>fa", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
 util.map("n", "<leader>fB", "<cmd>Telescope buffers<CR>")
 util.map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>")
+util.map("n", "<leader>fD", "<cmd>Telescope diagnostics<CR>")
+util.map("n", "<leader>fd", "<cmd>Telescope diagnostics bufnr=0<CR>")
 
 local find_tree_marks = function(opts)
 	local tree_api = require("nvim-tree.api")
