@@ -18,9 +18,26 @@ return require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("todo-comments").setup({
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
+				highlight = {
+					before = "", -- "fg" or "bg" or empty
+					keyword = "bg", -- "fg", "bg", "wide" or empty. (wide is the same as bg, but will also highlight surrounding characters)
+					after = "fg", -- "fg" or "bg" or empty
+					pattern = [[.*<(KEYWORDS)(\([^\)]*\))?:]],
+					comments_only = true, -- uses treesitter to match keywords in comments only
+					max_line_len = 400, -- ignore lines longer than this
+					exclude = {}, -- list of file types to exclude highlighting
+				},
+				search = {
+					command = "rg",
+					args = {
+						"--color=never",
+						"--no-heading",
+						"--with-filename",
+						"--line-number",
+						"--column",
+					},
+					pattern = [[\b(KEYWORDS)(\([^\)]*\))?:]],
+				},
 			})
 		end,
 	},
@@ -37,6 +54,9 @@ return require("lazy").setup({
 				ensure_installed = { "lua", "rust", "typescript", "javascript", "tsx", "html" },
 				highlight = {
 					enable = true,
+					disable = function(lang, bufnr)
+						return vim.api.nvim_buf_line_count(bufnr) > 5000
+					end,
 				},
 				autotag = {
 					enable = true,
@@ -48,6 +68,15 @@ return require("lazy").setup({
 				context_commentstring = {
 					enable = true,
 					enable_autocmd = false,
+				},
+				textsubjects = {
+					enable = true,
+					prev_selection = ",", -- (Optional) keymap to select the previous selection
+					keymaps = {
+						["<CR>"] = "textsubjects-smart",
+						[";"] = "textsubjects-container-outer",
+						["i;"] = "textsubjects-container-inner",
+					},
 				},
 			})
 		end,
@@ -130,6 +159,13 @@ return require("lazy").setup({
 		"folke/trouble.nvim",
 		config = function()
 			require("trouble").setup({})
+			vim.keymap.set("n", ",td", "<cmd>TroubleToggle document_diagnostics<CR>", { silent = true, noremap = true })
+			vim.keymap.set(
+				"n",
+				",tw",
+				"<cmd>TroubleToggle workspace_diagnostics<CR>",
+				{ silent = true, noremap = true }
+			)
 		end,
 	},
 	"nvim-treesitter/playground",
@@ -151,7 +187,6 @@ return require("lazy").setup({
 	"sam4llis/nvim-tundra",
 	"mattn/emmet-vim",
 	"JoosepAlviste/nvim-ts-context-commentstring",
-	"hrsh7th/cmp-nvim-lsp-signature-help",
 	{
 		"folke/which-key.nvim",
 		config = function()
@@ -222,7 +257,78 @@ return require("lazy").setup({
 			-- require("copilot_cmp").setup()
 		end,
 	},
+	{
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup()
+		end,
+	},
 	-- {
 	-- 	"github/copilot.vim"
 	-- }
+	{
+		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+		config = function()
+			-- require("lsp_lines").setup({
+			-- 	virtual_lines = false
+			-- })
+		end,
+	},
+	{
+		"nvim-pack/nvim-spectre",
+		config = function()
+			local spectre = require("spectre")
+			vim.keymap.set("n", "<leader>rr", spectre.open, { noremap = true })
+			vim.keymap.set("v", "<leader>rr", spectre.open_visual, { noremap = true })
+			vim.keymap.set("v", "<leader>rw", function()
+				spectre.open_visual({ select_word = true })
+			end, { noremap = true })
+			vim.keymap.set("n", "<leader>rf", spectre.open_file_search, { noremap = true })
+		end,
+	},
+	{
+		"ruifm/gitlinker.nvim",
+		config = function()
+			require("gitlinker").setup()
+			vim.keymap.set("n", "<leader>gb", function()
+				require("gitlinker").get_buf_range_url(
+					"n",
+					{ action_callback = require("gitlinker.actions").open_in_browser }
+				)
+			end, { silent = true })
+			vim.keymap.set("v", "<leader>gb", function()
+				require("gitlinker").get_buf_range_url(
+					"v",
+					{ action_callback = require("gitlinker.actions").open_in_browser }
+				)
+			end, { silent = true })
+		end,
+	},
+	{
+		"pwntester/octo.nvim",
+		config = function()
+			require("octo").setup()
+		end,
+	},
+	{ "RRethy/nvim-treesitter-textsubjects" },
+	{
+		"chrisgrieser/nvim-various-textobjs",
+		config = function()
+			require("various-textobjs").setup({ useDefaultKeymaps = true })
+		end,
+	},
+	{
+		"nvim-telescope/telescope-fzf-native.nvim",
+		build = "make",
+	},
+	{
+		"danymat/neogen",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+		config = function()
+			require("neogen").setup({})
+			vim.keymap.set("n", "<leader>gdf", require("neogen").generate, { noremap = true })
+		end,
+		-- Uncomment next line if you want to follow only stable versions
+		-- version = "*"
+	},
 })

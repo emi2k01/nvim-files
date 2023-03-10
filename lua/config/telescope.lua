@@ -17,13 +17,14 @@ end
 
 telescope.setup({
 	extensions = {
+		fzf = {},
 		file_browser = {
 			mappings = {
-				["i"] = {
-					["<C-t>"] = tcd_action,
+					["i"] = {
+						["<C-t>"] = tcd_action,
 				},
-				["n"] = {
-					["t"] = tcd_action,
+					["n"] = {
+						["t"] = tcd_action,
 				},
 			},
 		},
@@ -95,3 +96,4 @@ vim.keymap.set("n", "<leader>ft", find_tree_marks)
 telescope.load_extension("zf-native")
 telescope.load_extension("ui-select")
 telescope.load_extension("file_browser")
+telescope.load_extension("fzf")
