@@ -11,6 +11,10 @@ util.map("n", "<leader><S-l>", "<cmd>tabmove +1<CR>")
 util.map("n", "<leader><S-h>", "<cmd>tabmove -1<CR>")
 util.map("n", "<leader><esc>", "<cmd>nohlsearch<CR>")
 
+for i = 1, 9 do
+    util.map("n", "<leader>" .. i, "<cmd>tabnext " .. i .. "<CR>")
+end
+
 vim.g.mapleader = " "
 
 vim.o.conceallevel = 2

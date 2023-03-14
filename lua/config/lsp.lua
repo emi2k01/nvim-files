@@ -1,5 +1,4 @@
 require("mason").setup()
-require("mason-lspconfig").setup()
 local nlspsettings = require("nlspsettings")
 nlspsettings.setup({})
 local cmp_lsp = require("cmp_nvim_lsp")
