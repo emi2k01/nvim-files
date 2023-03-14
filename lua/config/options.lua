@@ -59,8 +59,8 @@ vim.cmd("hi SignColumn guibg=NONE guifg=NONE")
 vim.cmd("hi LineNr guibg=NONE guifg=NONE")
 vim.cmd("hi WindowSwitch guibg='#434343' guifg='#EEEEEE'")
 
-vim.cmd("filetype indent off")
-vim.cmd("au FileType * setlocal nosmartindent")
+-- vim.cmd("filetype indent off")
+-- vim.cmd("au FileType * setlocal nosmartindent")
 vim.cmd("au FileType typescriptreact,javascriptreact,javascript,typescript,svelte setlocal shiftwidth=2 | setlocal formatoptions-=cro")
 
 vim.diagnostic.config({

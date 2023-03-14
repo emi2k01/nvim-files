@@ -52,6 +52,9 @@ return require("lazy").setup({
 			require("aerial").setup({})
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = { "lua", "rust", "typescript", "javascript", "tsx", "html" },
+				indent = {
+					enable = true
+				},
 				highlight = {
 					enable = true,
 					disable = function(lang, bufnr)
