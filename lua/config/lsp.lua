@@ -188,6 +188,13 @@ lspconfig.jsonls.setup({
 	},
 })
 
+lspconfig.prismals.setup({
+	capabilities = capabilities,
+	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
+	end,
+})
+
 M.on_attach = on_attach
 
 return M
