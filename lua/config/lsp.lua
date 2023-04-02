@@ -13,7 +13,7 @@ require("mason-lspconfig").setup({
 })
 
 local opts = { noremap = true, silent = true }
-vim.keymap.set("n", ",e", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
+vim.keymap.set("n", ",e", "<cmd>Lspsaga show_line_diagnostics ++unfocus<CR>", opts)
 vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
 vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
 vim.keymap.set("n", ",q", vim.diagnostic.setloclist, opts)
@@ -28,6 +28,7 @@ local on_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
+	vim.keymap.set("n", "fn", require("nvim-navbuddy").open, bufopts)
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
 	vim.keymap.set("n", "gd", pickers.lsp_definitions, bufopts)
 	vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", bufopts)

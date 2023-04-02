@@ -62,12 +62,25 @@ cmp.setup({
 })
 
 luasnip.config.setup({
-	region_check_events = "InsertLeave,CursorMoved",
-	delete_check_events = "TextChanged,InsertLeave",
+	update_events = { "InsertLeave", "TextChanged", "TextChangedI" },
+	region_check_events = { "InsertLeave", "CursorMoved" },
+	delete_check_events = { "TextChanged", "InsertLeave" },
+	enable_autosnippets = true
 })
 
-vim.keymap.set({ "s", "i" }, "<C-j>", "<cmd>lua require('luasnip').jump(1)<CR>", {})
-vim.keymap.set({ "s", "i" }, "<C-k>", "<cmd>lua require('luasnip').jump(-1)<CR>", {})
+vim.keymap.set({ "s", "i" }, "<M-j>", function()
+	if luasnip.jumpable(1) then
+		local is_last = false
+		if luasnip.jump_destination(1) == nil then
+			is_last = true
+		end
+		luasnip.jump(1)
+		if is_last then
+			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "n", false)
+		end
+	end
+end, {})
+vim.keymap.set({ "s", "i" }, "<M-k>", "<cmd>lua require('luasnip').jump(-1)<CR>", {})
 
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_lua").load({ paths = "./lua/config/snippets" })

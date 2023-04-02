@@ -51,7 +51,8 @@ return require("lazy").setup({
 		config = function()
 			require("aerial").setup({})
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "lua", "rust", "typescript", "javascript", "tsx", "html", "markdown", "markdown_inline" },
+				ensure_installed = { "lua", "rust", "typescript", "javascript", "tsx", "html", "markdown",
+					"markdown_inline" },
 				indent = {
 					enable = true
 				},
@@ -334,4 +335,22 @@ return require("lazy").setup({
 		-- Uncomment next line if you want to follow only stable versions
 		-- version = "*"
 	},
+	"SmiteshP/nvim-navic",
+	"MunifTanjim/nui.nvim",
+	{
+		"SmiteshP/nvim-navbuddy",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+			"SmiteshP/nvim-navic",
+			"MunifTanjim/nui.nvim"
+		},
+		config = function()
+			require("nvim-navbuddy").setup({
+				lsp = {
+					auto_attach = true
+				}
+			})
+		end
+	},
+	"ibhagwan/fzf-lua"
 })

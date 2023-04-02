@@ -20,11 +20,11 @@ telescope.setup({
 		fzf = {},
 		file_browser = {
 			mappings = {
-					["i"] = {
-						["<C-t>"] = tcd_action,
+				["i"] = {
+					["<C-t>"] = tcd_action,
 				},
-					["n"] = {
-						["t"] = tcd_action,
+				["n"] = {
+					["t"] = tcd_action,
 				},
 			},
 		},
@@ -33,65 +33,33 @@ telescope.setup({
 
 vim.api.nvim_set_keymap("n", "<space>wt", "<cmd>Telescope file_browser<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<space>wT", "<cmd>Telescope file_browser path=%:p:h<CR>", { noremap = true })
-util.map(
-	"n",
-	"<leader>ff",
-	"<cmd>lua require'telescope.builtin'.find_files{ path_display = { smart = true, truncate = 50 } } <CR>"
-)
+vim.keymap.set("n", "<leader>ff", function()
+	require('fzf-lua').files()
+end)
 vim.keymap.set("n", "<leader>FF", function()
-	require("telescope.builtin").find_files({ cwd = vim.fn.expand("%:p:h") })
+	require('fzf-lua').files({ cwd = vim.fn.expand("%:p:h") })
 end)
 vim.keymap.set("n", "<leader>fF", function()
-	require("telescope.builtin").find_files({ cwd = vim.fn.expand("%:p:h:h") })
+	require('fzf-lua').files({ cwd = vim.fn.expand("%:p:h:h") })
 end)
-vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { noremap = true })
-util.map(
-	"n",
-	"<leader>fg",
-	"<cmd>lua require'telescope.builtin'.live_grep{ path_display = { smart = true, truncate = 50 } } <CR>"
-)
-util.map(
-	"n",
-	"<leader>fG",
-	"<cmd>lua require'telescope.builtin'.live_grep{ search_dirs={'%:p'}, path_display = 'hidden' } <CR>"
-)
-util.map("n", "<leader>fa", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
-util.map("n", "<leader>fB", "<cmd>Telescope buffers<CR>")
-util.map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>")
-util.map("n", "<leader>fD", "<cmd>Telescope diagnostics<CR>")
-util.map("n", "<leader>fd", "<cmd>Telescope diagnostics bufnr=0<CR>")
-
-local find_tree_marks = function(opts)
-	local tree_api = require("nvim-tree.api")
-	local pickers = require("telescope.pickers")
-	local finders = require("telescope.finders")
-	local conf = require("telescope.config").values
-	local make_entry = require("telescope.make_entry")
-
-	opts = opts or {}
-	opts.cwd = opts.cwd and vim.fn.expand(opts.cwd) or vim.loop.cwd()
-
-	local paths = {}
-	local marks_list = tree_api.marks.list()
-	for k, v in pairs(marks_list) do
-		print(v)
-		table.insert(paths, v.absolute_path)
-	end
-	print(tree_api.marks.list()[0])
-	pickers
-		.new(opts, {
-			prompt_title = "Tree marks",
-			finder = finders.new_table({
-				results = paths,
-				entry_maker = make_entry.gen_from_file(opts),
-			}),
-			previewer = conf.file_previewer(opts),
-			sorter = conf.file_sorter(opts),
-		})
-		:find()
-end
-
-vim.keymap.set("n", "<leader>ft", find_tree_marks)
+vim.keymap.set("n", "<leader>fb", function()
+	require('fzf-lua').buffers()
+end)
+vim.keymap.set("n", "<leader>fg", function()
+	require('fzf-lua').grep_project()
+end)
+vim.keymap.set("n", "<leader>fG", function()
+	require('fzf-lua').grep_project({ cwd = vim.fn.expand("%:p") })
+end)
+vim.keymap.set("n", "<leader>fs", function()
+	require('fzf-lua').lsp_document_symbols()
+end)
+vim.keymap.set("n", "<leader>fd", function()
+	require('fzf-lua').lsp_diagnostics_document()
+end)
+vim.keymap.set("n", "<leader>fD", function()
+	require('fzf-lua').lsp_diagnostics_workspace()
+end)
 
 telescope.load_extension("zf-native")
 telescope.load_extension("ui-select")
