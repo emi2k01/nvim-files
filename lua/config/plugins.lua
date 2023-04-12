@@ -5,8 +5,7 @@ return require("lazy").setup({
 		"nvim-telescope/telescope.nvim",
 		requires = { { "nvim-lua/plenary.nvim" } },
 	},
-	"natecraddock/telescope-zf-native.nvim",
-	"nvim-telescope/telescope-live-grep-args.nvim",
+	"nvim-telescope/telescope-fzy-native.nvim",
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
 	"neovim/nvim-lspconfig",
@@ -52,7 +51,7 @@ return require("lazy").setup({
 			require("aerial").setup({})
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = { "lua", "rust", "typescript", "javascript", "tsx", "html", "markdown",
-					"markdown_inline" },
+					"markdown_inline", "prisma" },
 				indent = {
 					enable = true
 				},
@@ -247,19 +246,35 @@ return require("lazy").setup({
 		end,
 	},
 	{
-		"zbirenbaum/copilot.lua",
-		config = function()
-			require("copilot").setup({
-				suggestion = { enabled = true, auto_trigger = true },
-				panel = { enabled = true },
-			})
-		end,
+		"jcdickinson/http.nvim",
+		build = "cargo build --workspace --release"
+	},
+	-- {
+	-- 	"jcdickinson/codeium.nvim",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"yioneko/nvim-cmp",
+	-- 		"jcdickinson/http.nvim"
+	-- 	},
+	-- 	config = function()
+	-- 		require("codeium").setup({
+	-- 		})
+	-- 	end
+	-- },
+	{
+	"zbirenbaum/copilot.lua",
+	config = function()
+		require("copilot").setup({
+			suggestion = { enabled = true, auto_trigger = true },
+			panel = { enabled = true },
+		})
+	end,
 	},
 	{
-		"zbirenbaum/copilot-cmp",
-		config = function()
-			-- require("copilot_cmp").setup()
-		end,
+	"zbirenbaum/copilot-cmp",
+	config = function()
+		-- require("copilot_cmp").setup()
+	end,
 	},
 	{
 		"windwp/nvim-autopairs",

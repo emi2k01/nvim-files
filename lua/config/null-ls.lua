@@ -3,7 +3,7 @@ local lsp = require("config/lsp")
 require("null-ls").setup({
 	sources = {
 		require("null-ls").builtins.formatting.stylua,
-		require("null-ls").builtins.formatting.prettierd.with({
+		require("null-ls").builtins.formatting.prettier.with({
 			filetypes = {
 				"html",
 				"json",

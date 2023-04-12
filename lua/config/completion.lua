@@ -38,6 +38,7 @@ cmp.setup({
 	experimental = { ghost_text = true },
 	sources = {
 		{ name = "copilot" },
+		-- { name = "codeium" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "nvim_lsp_signature_help" },
@@ -46,7 +47,8 @@ cmp.setup({
 		format = lspkind.cmp_format({
 			mode = "symbol",
 			maxWidth = 50,
-			symbol_map = { Copilot = "" },
+			-- symbol_map = { Codeium = "" },
+			symbol_map = { Copilot = "" },
 		}),
 	},
 	sorting = {

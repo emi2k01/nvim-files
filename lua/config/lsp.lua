@@ -9,7 +9,7 @@ local M = {}
 local lspconfig = require("lspconfig")
 
 require("mason-lspconfig").setup({
-	ensure_installed = { "lua_ls", "rust_analyzer", "tsserver" },
+	ensure_installed = { "lua_ls", "rust_analyzer", "tsserver", "eslint", "tailwindcss", "prismals" },
 })
 
 local opts = { noremap = true, silent = true }
@@ -45,6 +45,13 @@ local on_attach = function(client, bufnr)
 end
 
 local capabilities = cmp_lsp.default_capabilities()
+capabilities = vim.tbl_extend("force", capabilities, {
+	workspace = {
+		didChangeWatchedFiles = {
+			dynamicRegistration = true,
+		},
+	},
+})
 
 lspconfig.lua_ls.setup({
 	capabilities = capabilities,
@@ -78,9 +85,6 @@ require("rust-tools").setup({
 					experimental = {
 						enable = true,
 					},
-				},
-				files = {
-					watcher = "server",
 				},
 			},
 		},
