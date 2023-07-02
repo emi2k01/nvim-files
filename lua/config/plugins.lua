@@ -52,9 +52,6 @@ return require("lazy").setup({
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = { "lua", "rust", "typescript", "javascript", "tsx", "html", "markdown",
 					"markdown_inline", "prisma" },
-				indent = {
-					enable = true
-				},
 				highlight = {
 					enable = true,
 					disable = function(lang, bufnr)
@@ -246,45 +243,11 @@ return require("lazy").setup({
 		end,
 	},
 	{
-		"jcdickinson/http.nvim",
-		build = "cargo build --workspace --release"
-	},
-	-- {
-	-- 	"jcdickinson/codeium.nvim",
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"yioneko/nvim-cmp",
-	-- 		"jcdickinson/http.nvim"
-	-- 	},
-	-- 	config = function()
-	-- 		require("codeium").setup({
-	-- 		})
-	-- 	end
-	-- },
-	{
-	"zbirenbaum/copilot.lua",
-	config = function()
-		require("copilot").setup({
-			suggestion = { enabled = true, auto_trigger = true },
-			panel = { enabled = true },
-		})
-	end,
-	},
-	{
-	"zbirenbaum/copilot-cmp",
-	config = function()
-		-- require("copilot_cmp").setup()
-	end,
-	},
-	{
 		"windwp/nvim-autopairs",
 		config = function()
 			require("nvim-autopairs").setup()
 		end,
 	},
-	-- {
-	-- 	"github/copilot.vim"
-	-- }
 	{
 		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 		config = function()
@@ -367,5 +330,19 @@ return require("lazy").setup({
 			})
 		end
 	},
-	"ibhagwan/fzf-lua"
+	"ibhagwan/fzf-lua",
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		config = function()
+			require("copilot").setup({})
+		end,
+	},
+	{
+		"zbirenbaum/copilot-cmp",
+		config = function()
+			require("copilot_cmp").setup()
+		end
+	}
+
 })
